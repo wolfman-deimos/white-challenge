@@ -8,22 +8,29 @@
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <form>
     <form>
+        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
         First name: <input type="text" name="fname"><br>
+<!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
         Last name: <input type="text" name="lname"><br>
+        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
         Age: <input type="text" name="age"><br>
         <select>
             <option>Male</option>
             <option>Female</option>
             <option>Prefer not to say</option>
         </select><br>
+        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
         Rank: <input type="text" name="rank"><br>
+<!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
         <select>
             <option>Renting</option>
             <option>Owning</option>
             <option>No current residence</option>
             <option>Other</option>
         </select><br>
+        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
         Best number to call: <input type="number"><br>
+<!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
         <select>
             <option>Package 1</option>
             <option>Package 2</option>
