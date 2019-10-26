@@ -3,42 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>White Challenge</title>
+<!--    bootstrap cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--custom csss-->
+    <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
+<!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
+<!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
 <form>
-    <form>
-        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
-        First name: <input type="text" name="fname"><br>
-<!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
-        Last name: <input type="text" name="lname"><br>
-        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
-        Age: <input type="text" name="age"><br>
+    <div class="form-group">
+        <input type="text" name="fname" placeholder=" First name"><br>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="lname" placeholder="Last name"><br>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="age" placeholder="Age"><br>
+    </div>
+
+    <div class="form-group">
         <select>
             <option>Male</option>
             <option>Female</option>
             <option>Prefer not to say</option>
         </select><br>
-        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
-        Rank: <input type="text" name="rank"><br>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="rank" placeholder="Rank"><br>
+    </div>
+
 <!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
+
+    <div class="form-group">
         <select>
-            <option>Renting</option>
-            <option>Owning</option>
-            <option>No current residence</option>
-            <option>Other</option>
+        <option>Renting</option>
+        <option>Owning</option>
+        <option>No current residence</option>
+        <option>Other</option>
         </select><br>
-        <!--        todo: Use place holders instead of text to display input fields to ensure uniformity of input sizes-->
-        Best number to call: <input type="number"><br>
-<!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Best number to call?">
+    </div>
+
+            <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
+
+    <div class="form-group">
         <select>
-            <option>Package 1</option>
-            <option>Package 2</option>
-            <option>Package 3</option>
-        </select><br>
-        <input type="submit" value="Submit">
-    </form>
+        <option>Package 1</option>
+        <option>Package 2</option>
+        <option>Package 3</option>
+    </select>
+    </div>
+    <input type="submit" value="Submit">
+
 </form>
+
+<!--bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--custom js-->
 <script src="js/foundations.js"></script>
 </body>
 </html>
