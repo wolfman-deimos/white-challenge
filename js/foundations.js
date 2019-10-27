@@ -1,5 +1,6 @@
 "use strict";
 
+// todo: Can we put a brief description for each of the foundations in each object, I want to utilise the popups in mapbox to have a description as well as all the information already posted
 const foundations = [
     {
         name: "Soldier's Angels",
