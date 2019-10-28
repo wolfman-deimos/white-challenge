@@ -30,6 +30,7 @@
 
 
 <div id='map'></div>
+<!--    todo: Needs a filter option for the various types of markers that are going to be added (foundations, package1, package2 etc,)-->
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
 <script src="js/mapbox-functions.js"></script>
@@ -49,7 +50,6 @@
         map.setZoom(9);
     });
 
-    //todo: Decide on what color/image should be used to indicate a foundation
     foundations.forEach(function (info) {
         let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "'>" + info.name + "</a></h3><p>Description Here</p><h4>" + info.email + "</h4><h4>" + info.phone + "</h4>"
         geocode(info.address, mapboxKey).then(function(coordinates) {
