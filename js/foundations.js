@@ -68,7 +68,7 @@ function createNewFoundation(name, web, address, phone, email) {
         email: email
     };
     //todo: Instead of returning foundation lets use the arr.push() method to add it ot the foundations array
-    return foundation;
+    foundations.push(foundation);
 }
 
 function getFoundationPhones(obj){
