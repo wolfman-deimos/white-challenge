@@ -69,7 +69,7 @@ function createNewFoundation(name, web, address, phone, email) {
         email: email
     };
     //todo: Instead of returning foundation lets use the arr.push() method to add it ot the foundations array
-    return foundation;
+    foundations.push(foundation);
 }
 
 function getFoundationPhones(obj){
@@ -81,3 +81,20 @@ function getFoundationPhones(obj){
 
     return allPhones;
 }
+
+//Code to access the JSON File as a DB
+var requestURL = "http://localhost:3000/foundations";
+var request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+
+//code to manipulate the JSON FIle as it loads
+request.onload = function () {
+    var myFoundations = request.response;
+    console.log(myFoundations);
+}
+
+
+
+
