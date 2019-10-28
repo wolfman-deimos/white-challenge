@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resources</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
+    <style>
+        #map{
+            width: 400px;
+            height: 700px;
+        }
+
+        .popupCard{
+            /*Styling the popup information*/
+        }
+
+        /*Small devices (landscape phones, 576px and up)*/
+        @media (min-width: 576px) {
+            #map{
+                width: 80%;
+            }
+        }
+
+        /*Medium devices (tablets, 768px and up)*/
+        @media (min-width: 768px) {
+            #map{
+                width: 60%;
+            }
+        }
+
+        /*Large devices (desktops, 992px and up)*/
+        @media (min-width: 992px) {
+
+        }
+
+        /*Extra large devices (large desktops, 1200px and up)*/
+        @media (min-width: 1200px) {
+            #map{
+                width: 80%;
+                height: 50vh;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>My Resources</h1>
+</header>
+
+<main>
+    <div class="row p-3">
+        <div id='map' class="col-7"></div>
+        <div id="information" class="col-5"></div>
+    </div>
+
+</main>
+
+<footer>
+    <h6>Footer</h6>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<!-- Mapbox Geocoder Util Methods -->
+<script src="js/mapbox-geocoder-utils.js"></script>
+<!-- Custom JS -->
+<script src="js/foundations.js"></script>
+<script src="js/keys.js"></script>
+<script>
+    mapboxgl.accessToken = mapboxKey;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+
+
+
+    placeMarkerAndPopup(foundations, mapboxKey, map);
+    displayFoundations();
+
+
+    function placeMarkerAndPopup(foundations, token, map){
+        foundations.forEach(function (foundation, index) {
+            geocode(foundation.address, token).then(function (result) {
+
+
+                let marker = new mapboxgl.Marker()
+                    .setLngLat(result)
+                    .addTo(map);
+
+                let popup = new mapboxgl.Popup()
+                    .setHTML(
+                        "<div class='popupCard'><h6>" + foundation.name + "</h6><p>"+foundation.address+"</p><p><a href='" + foundation.website + "' target='_blank'>Website</a></p><p><a href='mailto:" + foundation.email + "' target='_blank'>" + foundation.email + "</a> </p><p><a href='" + foundation.phone + "' target='_blank'>" + foundation.phone + "</a></p></div>"
+                    );
+
+                marker.setPopup(popup);
+            });
+        });
+    }
+
+    function displayFoundations(){
+        let bodyElement = document.getElementById("information");
+        let html = "<div class='accordion' id='accordionExample'>";
+
+        foundations.forEach(function (foundation, index) {
+            let heading = "heading" + index;
+            let collapse = "collapse" + index;
+            let information = "<div class='found_inf'><h6>" + foundation.address + "</h6><p><a href='" + foundation.website + "' target='_blank'>" + foundation.website + "</a></p><p><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
+
+            html += "<div class = 'card'><div class='card-header' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
+        });
+
+        html += "</div>";
+        bodyElement.innerHTML = html;
+    }
+
+</script>
+</body>
+</html>
