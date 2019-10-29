@@ -11,8 +11,8 @@
     <!-- Custom CSS -->
     <style>
         #map{
-            width: 400px;
-            height: 700px;
+            width: 600px;
+            height: 400px;
         }
 
         .popupCard{
@@ -42,8 +42,16 @@
         @media (min-width: 1200px) {
             #map{
                 width: 80%;
-                height: 50vh;
             }
+        }
+
+        .marker-foundation {
+            background-image: url('img/purple-ribbon-edited.png');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
     </style>
@@ -75,41 +83,27 @@
 <!-- Custom JS -->
 <script src="js/foundations.js"></script>
 <script src="js/keys.js"></script>
+<script src="js/mapbox-functions.js"></script>
 <script>
     mapboxgl.accessToken = mapboxKey;
 
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 10,
-        center: [-98.4916, 29.4252]
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
 
+    geocode("San Antonio", mapboxKey).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(9);
+    });
 
     placeMarkerAndPopup(foundations, mapboxKey, map);
     displayFoundations();
 
-
-    function placeMarkerAndPopup(foundations, token, map){
-        foundations.forEach(function (foundation, index) {
-            geocode(foundation.address, token).then(function (result) {
-
-
-                let marker = new mapboxgl.Marker()
-                    .setLngLat(result)
-                    .addTo(map);
-
-                let popup = new mapboxgl.Popup()
-                    .setHTML(
-                        "<div class='popupCard'><h6>" + foundation.name + "</h6><p>"+foundation.address+"</p><p><a href='" + foundation.website + "' target='_blank'>Website</a></p><p><a href='mailto:" + foundation.email + "' target='_blank'>" + foundation.email + "</a> </p><p><a href='" + foundation.phone + "' target='_blank'>" + foundation.phone + "</a></p></div>"
-                    );
-
-                marker.setPopup(popup);
-            });
-        });
-    }
-
+    // todo: for some reason the collapsible is moving over to the right with every row, I think it should be uniform to the right
     function displayFoundations(){
         let bodyElement = document.getElementById("information");
         let html = "<div class='accordion' id='accordionExample'>";
@@ -125,6 +119,21 @@
         html += "</div>";
         bodyElement.innerHTML = html;
     }
+
+    foundations.forEach(function (info) {
+        let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h3><p>Description Here</p><h4><a href='mailto:" + info.email + "</a></h4><h4>" + info.phone + "</h4>"
+        geocode(info.address, mapboxKey).then(function(coordinates) {
+            var popup = new mapboxgl.Popup()
+                .setHTML(popupHTML);
+            var addRibbon = document.createElement('div');
+            addRibbon.className = 'marker-foundation';
+            var marker = new mapboxgl.Marker(addRibbon)
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            markers.push(marker);
+        });
+    })
 
 </script>
 </body>
