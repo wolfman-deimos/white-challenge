@@ -1,79 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>White Challenge</title>
-<!--    bootstrap cdn -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<!--custom csss-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
+    <style>
+        #map{
+            width: 600px;
+            height: 400px;
+        }
+
+        /*Small devices (landscape phones, 576px and up)*/
+        @media (min-width: 576px) {
+            #map{
+                width: 80%;
+            }
+        }
+
+        /*Medium devices (tablets, 768px and up)*/
+        @media (min-width: 768px) {
+            #map{
+                width: 60%;
+            }
+        }
+
+        /*Large devices (desktops, 992px and up)*/
+        @media (min-width: 992px) {
+
+        }
+
+        /*Extra large devices (large desktops, 1200px and up)*/
+        @media (min-width: 1200px) {
+            #map{
+                width: 80%;
+            }
+        }
+
+        .marker-foundation {
+            background-image: url('img/purple-ribbon-edited.png');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+    </style>
     <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
-<form>
-    <div class="form-group">
-        <input type="text" name="fname" placeholder=" First name"><br>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Resources</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
     </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <!--Content for HOME PANEL -->
+        <form>
+            <div class="form-group">
+                <input type="text" name="fname" placeholder=" First name"><br>
+            </div>
 
-    <div class="form-group">
-        <input type="text" name="lname" placeholder="Last name"><br>
-    </div>
+            <div class="form-group">
+                <input type="text" name="lname" placeholder="Last name"><br>
+            </div>
 
-    <div class="form-group">
-        <input type="text" name="age" placeholder="Age"><br>
-    </div>
+            <div class="form-group">
+                <input type="text" name="age" placeholder="Age"><br>
+            </div>
 
-    <div class="form-group">
-        <select>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Prefer not to say</option>
-        </select><br>
-    </div>
-<!-- todo: Need branch here -->
-    <div class="form-group">
-        <input type="text" name="rank" placeholder="Rank"><br>
-    </div>
+            <div class="form-group">
+                <select>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Prefer not to say</option>
+                </select><br>
+            </div>
+            <!-- todo: Need branch here -->
+            <div class="form-group">
+                <input type="text" name="rank" placeholder="Rank"><br>
+            </div>
 
-<!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
+            <!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
 
-    <div class="form-group">
-        <select>
-        <option>Renting</option>
-        <option>Owning</option>
-        <option>No current residence</option>
-        <option>Other</option>
-        </select><br>
-    </div>
+            <div class="form-group">
+                <select>
+                    <option>Renting</option>
+                    <option>Owning</option>
+                    <option>No current residence</option>
+                    <option>Other</option>
+                </select><br>
+            </div>
 
-    <div class="form-group">
-        <input type="text" placeholder="Best number to call?">
-    </div>
+            <div class="form-group">
+                <input type="text" placeholder="Best number to call?">
+            </div>
 
             <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
 
-    <div class="form-group">
-        <select>
-        <option>Package 1</option>
-        <option>Package 2</option>
-        <option>Package 3</option>
-    </select>
+            <div class="form-group">
+                <select>
+                    <option>Package 1</option>
+                    <option>Package 2</option>
+                    <option>Package 3</option>
+                </select>
+            </div>
+
+            <!--    todo: would like to add a way to access the current location of a person and add it to the person object, this will be important to adding it to the mapbox-->
+
+            <input type="submit" value="Submit">
+
+        </form>
     </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <!--CONTENT OF RESOURCES PANEL -->
+        <div class="row p-3">
+            <div id='map' class="col-sm-12 col-md-7"></div>
+            <div id="information" class="col-sm-12 col-md-5"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <h1>Test</h1>
+    </div>
+</div>
 
-<!--    todo: would like to add a way to access the current location of a person and add it to the person object, this will be important to adding it to the mapbox-->
 
-    <input type="submit" value="Submit">
 
-</form>
 
-<!--bootstrap js -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!--custom js-->
-<script src="js/foundations.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<!-- Mapbox Geocoder Util Methods -->
+<script src="js/mapbox-geocoder-utils.js"></script>
+<!-- Custom JS -->
+<script src="js/keys.js"></script>
+<script src="js/mapbox-functions.js"></script>
+<script src="js/resources.js"></script>
 </body>
 </html>
 
