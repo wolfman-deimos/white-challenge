@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!--custom csss-->
     <link rel="stylesheet" href="css/whtchl-custcss.css">
+    <style type="text/css">
+        #otherresidence {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
@@ -32,21 +37,34 @@
             <option>Prefer not to say</option>
         </select><br>
     </div>
-<!-- todo: Need branch here -->
+
+    <div class="form-group">
+        <select>
+            <option>Air Force</option>
+            <option>Army</option>
+            <option>Coast Guard</option>
+            <option>Marines</option>
+            <option>Navy</option>
+        </select><br>
+    </div>
     <div class="form-group">
         <input type="text" name="rank" placeholder="Rank"><br>
     </div>
 
-<!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
 
-    <div class="form-group">
-        <select>
-        <option>Renting</option>
-        <option>Owning</option>
-        <option>No current residence</option>
-        <option>Other</option>
-        </select><br>
-    </div>
+<!--    <div class="form-group">-->
+    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
+    <br>
+    <select class="mb-2" name="selectList" id="selectresidence">
+        <option id="renting" >Renting</option>
+        <option id="owning">Owning</option>
+        <option id="nocurrent">No current residence</option>
+        <option id="other">Other</option>
+        </select>
+        <label id="otherresidence">
+            <input type="text" placeholder="Describe your situation.">
+        </label><br>
+<!--    </div>-->
 
     <div class="form-group">
         <input type="text" placeholder="Best number to call?">
@@ -54,6 +72,8 @@
 
             <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
 
+    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
+    <br>
     <div class="form-group">
         <select>
         <option>Package 1</option>
@@ -67,6 +87,8 @@
     <input type="submit" value="Submit">
 
 </form>
+
+
 
 <!--bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -80,6 +80,19 @@ function getFoundationPhones(obj){
 
     return allPhones;
 }
+// ken's corner - jqueryifying form
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+    $('#selectresidence').change(function(){
+        if($('#selectresidence option:selected').text() == "Other"){
+            $('#otherresidence').show();
+        }
+        else{
+            $('#otherresidence').hide();
+        }
+    });
+});
+
 
 //Code to access the JSON File as a DB
 var requestURL = "http://localhost:3000/foundations";
