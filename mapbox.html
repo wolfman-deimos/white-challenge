@@ -90,6 +90,7 @@
 
 
 <div id='map'></div>
+
 <input type="checkbox" value="red" id="redCheck">
 <!--    todo: Needs a filter option for the various types of markers that are going to be added (foundations, package1, package2 etc,)-->
 <script src="js/keys.js"></script>
@@ -141,20 +142,24 @@
         })
     });
 
-    document.getElementById('redCheck').addEventListener('change', function () {
-        if(this.checked){
-            var array = document.getElementsByClassName('marker-package1');
-            for(let i = 0; i < array.length; i++){
-                array[i].classList.add('displayNone');
+    filterMarker('redCheck','marker-package1');
+
+    function filterMarker(checkType,markerType){
+        document.getElementById(checkType).addEventListener('change', function () {
+            if(this.checked){
+                var array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.add('displayNone');
+                }
             }
-        }
-        if(!this.checked){
-            var array = document.getElementsByClassName('marker-package1');
-            for(let i = 0; i < array.length; i++){
-                array[i].classList.remove('displayNone');
+            if(!this.checked){
+                var array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.remove('displayNone');
+                }
             }
-        }
-    })
+        })
+    }
 
 
 </script>

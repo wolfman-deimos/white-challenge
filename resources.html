@@ -8,53 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Mapbox CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-    <!-- Custom CSS -->
-    <style>
-        #map{
-            width: 600px;
-            height: 400px;
-        }
-
-        .popupCard{
-            /*Styling the popup information*/
-        }
-
-        /*Small devices (landscape phones, 576px and up)*/
-        @media (min-width: 576px) {
-            #map{
-                width: 80%;
-            }
-        }
-
-        /*Medium devices (tablets, 768px and up)*/
-        @media (min-width: 768px) {
-            #map{
-                width: 60%;
-            }
-        }
-
-        /*Large devices (desktops, 992px and up)*/
-        @media (min-width: 992px) {
-
-        }
-
-        /*Extra large devices (large desktops, 1200px and up)*/
-        @media (min-width: 1200px) {
-            #map{
-                width: 80%;
-            }
-        }
-
-        .marker-foundation {
-            background-image: url('img/purple-ribbon-edited.png');
-            background-size: cover;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
 <header>
@@ -63,10 +17,35 @@
 
 <main>
     <div class="row p-3">
-        <div id='map' class="col-7"></div>
+        <div class="col-7">
+            <div id='map'></div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="redCheck" value="Package1" checked>
+                <label class="form-check-label" for="redCheck">Show Package 1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="blueCheck" value="Package2" checked>
+                <label class="form-check-label" for="blueCheck">Show Package 2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="greenCheck" value="Package3" checked>
+                <label class="form-check-label" for="greenCheck">Show package 3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="foundationCheck" value="foundationCheck" checked>
+                <label class="form-check-label" for="foundationCheck">Show Foundations</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="depoCheck" value="depoCheck" checked>
+                <label class="form-check-label" for="depoCheck">Show Package Depo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="encampmentCheck" value="encampmentCheck" checked>
+                <label class="form-check-label" for="encampmentCheck">Show Homeless Encampments</label>
+            </div>
+        </div>
         <div id="information" class="col-5"></div>
     </div>
-
 </main>
 
 <footer>
@@ -102,6 +81,12 @@
 
     placeMarkerAndPopup(foundations, mapboxKey, map);
     displayFoundations();
+    filterMarker('redCheck','marker-package1');
+    filterMarker('blueCheck','marker-package2');
+    filterMarker('greenCheck','marker-package3');
+    filterMarker('foundationCheck','marker-foundation');
+    filterMarker('depoCheck','marker-depo');
+    filterMarker('encampmentCheck','marker-encampment');
 
     // todo: for some reason the collapsible is moving over to the right with every row, I think it should be uniform to the right
     function displayFoundations(){
@@ -134,6 +119,25 @@
             markers.push(marker);
         });
     });
+
+
+
+    function filterMarker(checkType,markerType){
+        document.getElementById(checkType).addEventListener('change', function () {
+            if(!this.checked){
+                let array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.add('displayNone');
+                }
+            }
+            if(this.checked){
+                let array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.remove('displayNone');
+                }
+            }
+        })
+    }
 
 
 
