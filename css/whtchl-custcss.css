@@ -18,3 +18,53 @@ body {
 #fieldform {
     background-color: var(--accent-lblue);
 }
+
+#map{
+    width: 100%;
+    height: 400px;
+}
+
+.popupCard{
+    /*Styling the popup information*/
+}
+
+.marker-foundation {
+    background-image: url('../img/purple-ribbon-edited.png');
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.marker-package1{
+    background-color: #AE4040;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.marker-package2{
+    background-color: #AE4040;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.marker-package3{
+    background-color: #AE4040;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.displayNone{
+    display: none;
+}
+

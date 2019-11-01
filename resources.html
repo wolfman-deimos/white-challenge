@@ -8,45 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Mapbox CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
-    <!-- Custom CSS -->
-    <style>
-        #map{
-            width: 400px;
-            height: 700px;
-        }
-
-        .popupCard{
-            /*Styling the popup information*/
-        }
-
-        /*Small devices (landscape phones, 576px and up)*/
-        @media (min-width: 576px) {
-            #map{
-                width: 80%;
-            }
-        }
-
-        /*Medium devices (tablets, 768px and up)*/
-        @media (min-width: 768px) {
-            #map{
-                width: 60%;
-            }
-        }
-
-        /*Large devices (desktops, 992px and up)*/
-        @media (min-width: 992px) {
-
-        }
-
-        /*Extra large devices (large desktops, 1200px and up)*/
-        @media (min-width: 1200px) {
-            #map{
-                width: 80%;
-                height: 50vh;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
 <header>
@@ -55,10 +17,35 @@
 
 <main>
     <div class="row p-3">
-        <div id='map' class="col-7"></div>
+        <div class="col-7">
+            <div id='map'></div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="redCheck" value="Package1" checked>
+                <label class="form-check-label" for="redCheck">Show Package 1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="blueCheck" value="Package2" checked>
+                <label class="form-check-label" for="blueCheck">Show Package 2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="greenCheck" value="Package3" checked>
+                <label class="form-check-label" for="greenCheck">Show Package 3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="foundationCheck" value="foundationCheck" checked>
+                <label class="form-check-label" for="foundationCheck">Show Foundations</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="depoCheck" value="depoCheck" checked>
+                <label class="form-check-label" for="depoCheck">Show Package Depo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="encampmentCheck" value="encampmentCheck" checked>
+                <label class="form-check-label" for="encampmentCheck">Show Homeless Encampments</label>
+            </div>
+        </div>
         <div id="information" class="col-5"></div>
     </div>
-
 </main>
 
 <footer>
@@ -75,41 +62,33 @@
 <!-- Custom JS -->
 <script src="js/foundations.js"></script>
 <script src="js/keys.js"></script>
+<script src="js/mapbox-functions.js"></script>
 <script>
     mapboxgl.accessToken = mapboxKey;
 
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 10,
-        center: [-98.4916, 29.4252]
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
 
+    geocode("San Antonio", mapboxKey).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(9);
+    });
 
     placeMarkerAndPopup(foundations, mapboxKey, map);
     displayFoundations();
+    filterMarker('redCheck','marker-package1');
+    filterMarker('blueCheck','marker-package2');
+    filterMarker('greenCheck','marker-package3');
+    filterMarker('foundationCheck','marker-foundation');
+    filterMarker('depoCheck','marker-depo');
+    filterMarker('encampmentCheck','marker-encampment');
 
-
-    function placeMarkerAndPopup(foundations, token, map){
-        foundations.forEach(function (foundation, index) {
-            geocode(foundation.address, token).then(function (result) {
-
-
-                let marker = new mapboxgl.Marker()
-                    .setLngLat(result)
-                    .addTo(map);
-
-                let popup = new mapboxgl.Popup()
-                    .setHTML(
-                        "<div class='popupCard'><h6>" + foundation.name + "</h6><p>"+foundation.address+"</p><p><a href='" + foundation.website + "' target='_blank'>Website</a></p><p><a href='mailto:" + foundation.email + "' target='_blank'>" + foundation.email + "</a> </p><p><a href='" + foundation.phone + "' target='_blank'>" + foundation.phone + "</a></p></div>"
-                    );
-
-                marker.setPopup(popup);
-            });
-        });
-    }
-
+    // todo: for some reason the collapsible is moving over to the right with every row, I think it should be uniform to the right
     function displayFoundations(){
         let bodyElement = document.getElementById("information");
         let html = "<div class='accordion' id='accordionExample'>";
@@ -125,6 +104,41 @@
         html += "</div>";
         bodyElement.innerHTML = html;
     }
+
+    foundations.forEach(function (info) {
+        let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h3><p>Description Here</p><h4><a href='mailto:" + info.email + "</a></h4><h4>" + info.phone + "</h4>"
+        geocode(info.address, mapboxKey).then(function(coordinates) {
+            var popup = new mapboxgl.Popup()
+                .setHTML(popupHTML);
+            var addRibbon = document.createElement('div');
+            addRibbon.className = 'marker-foundation';
+            var marker = new mapboxgl.Marker(addRibbon)
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+        });
+    });
+
+
+
+    function filterMarker(checkType,markerType){
+        document.getElementById(checkType).addEventListener('change', function () {
+            if(!this.checked){
+                let array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.add('displayNone');
+                }
+            }
+            if(this.checked){
+                let array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.remove('displayNone');
+                }
+            }
+        })
+    }
+
+
 
 </script>
 </body>
