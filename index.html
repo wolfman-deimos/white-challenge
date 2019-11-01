@@ -14,10 +14,16 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-light border-bottom border-dark">
+    <a class="navbar-brand p-0" href="#">
+        <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+    </a>
+</nav>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
-<form>
+<form id="fieldform" class="border border-dark d-inline-block mt-3 p-3">
+
     <div class="form-group">
         <input type="text" name="fname" placeholder=" First name"><br>
     </div>
@@ -88,7 +94,11 @@
 
 </form>
 
-
+<nav class="navbar navbar-light border-top border-dark">
+<a class="navbar-brand p-0" href="#">
+    <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+</a>
+</nav>
 
 <!--bootstrap js -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

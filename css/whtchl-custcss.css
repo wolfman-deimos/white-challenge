@@ -8,3 +8,13 @@
     --shade-wht: #E5EFF1;
 }
 
+body {
+    background-color: var(--shade-wht);
+}
+.navbar {
+    background-color: var(--accent-lblue);
+}
+
+#fieldform {
+    background-color: var(--accent-lblue);
+}
