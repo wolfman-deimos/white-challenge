@@ -8,6 +8,14 @@
     --shade-wht: #E5EFF1;
 }
 
+.mainblue-bg {
+    background-color: var(--main-blue) ;
+}
+
+.accent-lblue {
+    background-color: var(--accent-lblue);
+}
+
 body {
     background-color: var(--shade-wht);
 }
