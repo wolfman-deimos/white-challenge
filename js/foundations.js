@@ -83,6 +83,7 @@ function getFoundationPhones(obj){
 // ken's corner - jqueryifying form
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
+
     $('#selectresidence').change(function(){
         if($('#selectresidence option:selected').text() == "Other"){
             $('#otherresidence').show();
@@ -91,6 +92,14 @@ $(document).ready(function(){
             $('#otherresidence').hide();
         }
     });
+
+
+    $("#redpkg").hover(function(){
+        $("#redcard").css("display", "none");
+    }, function(){
+        $("#redcard").css("display", "inline-block");
+    });
+
 });
 
 

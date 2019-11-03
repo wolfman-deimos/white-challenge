@@ -16,6 +16,22 @@
     background-color: var(--accent-lblue);
 }
 
+/*.fade*/
+/*{*/
+/*    display:none;*/
+/*    opacity:0;*/
+/*    transition: 1.5s;*/
+/*}*/
+/*.fade:hover*/
+/*{*/
+/*    display: inline-block;*/
+/*    opacity:1;*/
+/*}*/
+
+/*#otherresidence {*/
+/*    display: none;*/
+/*}*/
+
 body {
     background-color: var(--shade-wht);
 }
