@@ -94,20 +94,39 @@ $(document).ready(function(){
     });
 
     $('#pkgselect').change(function(){
-        if($('#pkgselect option:selected').text() == "Red Package"){
-            $('#redcard').show();
-        }
-        else{
-            $('#redcard').hide();
-        }
+        if($('#redpkg :selected').text() === "Red Package"){
+            $('#redcard').fadeToggle();
+        } else {
+            $("#redcard").fadeToggle();
+        };
+        if($('this option:selected').text() === "White Package"){
+            $('#whtcard').fadeToggle();
+        } else {
+            $("#whtcard").fadeToggle();
+        };
     });
 
+    // $('#pkgselect').change(function(){
+    //     if($('this option:selected').text() == "White Package"){
+    //         $('#whtcard').fadeToggle();
+    //     } else {
+    //         $("#whtcard").fadeToggle();
+    //     }
+    // });
 
-    $("#redpkg").hover(function(){
-        $("#redcard").css("display", "none");
-    }, function(){
-        $("#redcard").css("display", "inline-block");
-    });
+    // $('#pkgselect').change(function(){
+    //     if($('this option:selected').text() == "Blue Package"){
+    //         $('#bluecard').fadeToggle();
+    //     } else {
+    //         $("#bluecard").fadeToggle();
+    //     }
+    // });
+
+    // $("button").click(function (){
+    //    $("#redcard").fadeToggle();
+    // });
+
+
 
 });
 
