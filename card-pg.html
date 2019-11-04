@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
-<div class="card fade" style="width: 18rem;">
+
+<div class="form-group">
+    <select id="pkgselect">
+        <option selected>Which package?</option>
+        <option value="1" id="redpkg">Red Package</option>
+        <option>Package 2</option>
+        <option>Package 3</option>
+    </select>
+</div>
+<div id="redcard" class="card mx-auto red-bg" style="width: 18rem;">
     <div class="w-75 h-75 mx-auto py-3">
         <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
     </div>
@@ -17,15 +26,43 @@
         <p class="card-text">Focused on providing items tailored for our male populations in need we find.</p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Larger sized socks and blanket</li>
-        <li class="list-group-item">Toiletries and hygiene products</li>
-        <li class="list-group-item">Packaged food and water</li>
+        <li class="lblue-bg list-group-item ">Above-average sized socks and seasonally appropriate gear</li>
+        <li class="lblue-bg list-group-item">Toiletries and hygiene products</li>
+        <li class="lblue-bg list-group-item">Packaged food and water</li>
     </ul>
-    <div class="card-body">
-        <a href="#" class="card-link">White Package</a>
-        <a href="#" class="card-link">Blue Package</a>
-    </div>
 </div>
+<br>
+<div class="wht-bg card mx-auto" style="width: 18rem;">
+    <div class="w-75 h-75 mx-auto py-3">
+        <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">White Package</h5>
+        <p class="card-text">Focused on providing a gender-neutral set of items.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="lblue-bg list-group-item">Seasonally sensitive clothing and gear for average sizes</li>
+        <li class="lblue-bg list-group-item">Hygiene products and oral care products</li>
+        <li class="lblue-bg list-group-item">Packaged food and water</li>
+    </ul>
+</div>
+<br>
+<div class="card mainblue-bg mx-auto" style="width: 18rem;">
+    <div class="w-75 h-75 mx-auto py-3">
+        <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Blue Package</h5>
+        <p class="card-text">Focused on providing items tailored for our female populations in need we find.</p>
+    </div>
+    <ul class="list-group list-group-flush lblue-bg">
+        <li class="lblue-bg list-group-item">Underclothing provided with seasonally appropriate gear</li>
+        <li class="lblue-bg list-group-item">Toiletries and hygiene products including feminine hygiene</li>
+        <li class="lblue-bg list-group-item">Packaged food and water</li>
+    </ul>
+</div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -93,6 +93,15 @@ $(document).ready(function(){
         }
     });
 
+    $('#pkgselect').change(function(){
+        if($('#pkgselect option:selected').text() == "Red Package"){
+            $('#redcard').show();
+        }
+        else{
+            $('#redcard').hide();
+        }
+    });
+
 
     $("#redpkg").hover(function(){
         $("#redcard").css("display", "none");
