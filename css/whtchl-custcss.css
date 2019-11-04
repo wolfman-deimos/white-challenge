@@ -9,13 +9,42 @@
 }
 
 .mainblue-bg {
-    background-color: var(--main-blue) ;
+    background-color: var(--main-blue);
+    color: var(--shade-wht);
 }
 
-.accent-lblue {
+.red-bg {
+    background-color: var(--accent-red);
+    color: var(--shade-wht);
+}
+
+.dblue-bg {
+    background-color: var(--shade-dblue);
+}
+
+.lblue-bg {
     background-color: var(--accent-lblue);
 }
 
+.wht-bg {
+    background-color: var(--shade-wht);
+}
+
+#otherresidence {
+    display: none;
+}
+
+#redcard {
+    display: none;
+}
+
+#whtcard {
+    display: none;
+}
+
+#bluecard {
+    display: none;
+}
 body {
     background-color: var(--shade-wht);
 }

@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!--custom csss-->
     <link rel="stylesheet" href="css/whtchl-custcss.css">
-    <style type="text/css">
-        #otherresidence {
-            display: none;
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-light border-bottom border-dark">
@@ -38,6 +33,7 @@
 
     <div class="form-group">
         <select>
+            <option>Male</option>
             <option>Male</option>
             <option>Female</option>
             <option>Prefer not to say</option>
@@ -82,7 +78,8 @@
     <br>
     <div class="form-group">
         <select>
-        <option>Package 1</option>
+            <option selected>Which package?</option>
+        <option id="redpkg">Red Package</option>
         <option>Package 2</option>
         <option>Package 3</option>
     </select>
