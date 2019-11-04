@@ -9,10 +9,11 @@
 }
 
 body {
-    background-color: var(--shade-wht);
-}
-.navbar {
     background-color: var(--accent-lblue);
+}
+
+.jumbotron-fluid{
+    background-color: var(--shade-wht);
 }
 
 #fieldform {
