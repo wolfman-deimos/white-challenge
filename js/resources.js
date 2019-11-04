@@ -2,7 +2,7 @@
 
 let myFoundations;
 //Code to access the JSON File as a DB
-const requestURL = "http://localhost:3000/foundations";
+const requestURL = "http://localhost:4000/foundations";
 const request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';

@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "first_name": "Eduardo",
+      "last_name": "Valerio",
+      "age": "33",
+      "sex": "Male",
+      "rank": "",
+      "housing": "Renting",
+      "phone": "210-557-4534",
+      "care_package": "Package 2",
+      "id": 1
+    },
+    {
+      "first_name": "colin",
+      "last_name": "marchbanks",
+      "age": "24",
+      "sex": "Male",
+      "rank": "none",
+      "housing": "Renting",
+      "phone": "2108270646",
+      "care_package": "Package 2",
+      "id": 2
+    },
+    {
+      "first_name": "Serena",
+      "last_name": "Smith",
+      "age": "40",
+      "sex": "Female",
+      "rank": "soldier",
+      "housing": "Owning",
+      "phone": "210-557-4534",
+      "care_package": "Package 1",
+      "id": 3
+    }
+  ]
+}

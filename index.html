@@ -153,16 +153,15 @@
     $('#myForm').submit(function (e) {
         e.preventDefault();
 
-        var fname = $('#fname').val();
-        var lname = $('#lname').val();
-        var age = $('#age').val();
-        var sex = $('#sex').children('option:selected').val();
-        var rank = $('#rank').val();
-        var housing = $('#housing').children('option:selected').val();
-        var phone = $('#phone').val();
-        var package = $('#care_package').children('option:selected').val();
+        let fname = $('#fname').val();
+        let lname = $('#lname').val();
+        let age = $('#age').val();
+        let sex = $('#sex').children('option:selected').val();
+        let rank = $('#rank').val();
+        let housing = $('#housing').children('option:selected').val();
+        let phone = $('#phone').val();
+        let package = $('#care_package').children('option:selected').val();
 
-        let jsonArr;
         let user = {
             first_name: fname,
             last_name: lname,
@@ -174,23 +173,22 @@
             care_package: package
         };
 
-        request.open('POST', requestURL);
-        request.onreadystatechange = function(){
-            if(request.readyState == 4 && request.status == 200){
-                jsonArr = JSON.parse(request.responseText);
-
-                jsonArr.push(user);
-
-                request.setRequestHeader("Content-Type", "application/json");
-            }
+        //const user_info = {title: 'Users', body: JSON.stringify(user)};
+        const url = 'http://localhost:3000/users';
+        const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
         };
+        fetch(url, options)
+            .then()
+            .catch();
 
-        request.send(JSON.stringify(jsonArr));
 
-
-
-        // alert(fname + " " + lname + " " + age + " " + sex + " " + rank + " " + housing + " " + phone + " " + package);
-        // $(this).reset();
+         //alert(fname + " " + lname + " " + age + " " + sex + " " + rank + " " + housing + " " + phone + " " + package);
+        $(this).reset();
     });
 </script>
 
