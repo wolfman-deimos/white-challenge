@@ -80,56 +80,6 @@ function getFoundationPhones(obj){
 
     return allPhones;
 }
-// ken's corner - jqueryifying form
-$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
-
-    $('#selectresidence').change(function(){
-        if($('#selectresidence option:selected').text() == "Other"){
-            $('#otherresidence').show();
-        }
-        else{
-            $('#otherresidence').hide();
-        }
-    });
-
-    $('#pkgselect').change(function(){
-        if($('#redpkg :selected').text() === "Red Package"){
-            $('#redcard').fadeToggle();
-        } else {
-            $("#redcard").fadeToggle();
-        };
-        if($('this option:selected').text() === "White Package"){
-            $('#whtcard').fadeToggle();
-        } else {
-            $("#whtcard").fadeToggle();
-        };
-    });
-
-    // $('#pkgselect').change(function(){
-    //     if($('this option:selected').text() == "White Package"){
-    //         $('#whtcard').fadeToggle();
-    //     } else {
-    //         $("#whtcard").fadeToggle();
-    //     }
-    // });
-
-    // $('#pkgselect').change(function(){
-    //     if($('this option:selected').text() == "Blue Package"){
-    //         $('#bluecard').fadeToggle();
-    //     } else {
-    //         $("#bluecard").fadeToggle();
-    //     }
-    // });
-
-    // $("button").click(function (){
-    //    $("#redcard").fadeToggle();
-    // });
-
-
-
-});
-
 
 //Code to access the JSON File as a DB
 var requestURL = "http://localhost:3000/foundations";
