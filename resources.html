@@ -61,6 +61,7 @@
 <script src="js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script src="js/foundations.js"></script>
+<script src="js/encampments.js"></script>
 <script src="js/keys.js"></script>
 <script src="js/mapbox-functions.js"></script>
 <script>
@@ -79,7 +80,7 @@
         map.setZoom(9);
     });
 
-    placeMarkerAndPopup(foundations, mapboxKey, map);
+
     displayFoundations();
     filterMarker('redCheck','marker-package1');
     filterMarker('blueCheck','marker-package2');
@@ -105,8 +106,18 @@
         bodyElement.innerHTML = html;
     }
 
+
+
+    encampments.forEach(function (encampment) {
+            var addRibbon = document.createElement('div');
+            addRibbon.className = 'marker-encampment';
+            var marker = new mapboxgl.Marker(addRibbon)
+                .setLngLat(encampment.address)
+                .addTo(map)
+    });
+
     foundations.forEach(function (info) {
-        let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h3><p>Description Here</p><h4><a href='mailto:" + info.email + "</a></h4><h4>" + info.phone + "</h4>"
+        let popupHTML = "<h6 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h6><p>Description Here</p><h6><a href='mailto:" + info.email + "'>" + info.email + "</a></h6><h6>" + info.phone + "</h6>";
         geocode(info.address, mapboxKey).then(function(coordinates) {
             var popup = new mapboxgl.Popup()
                 .setHTML(popupHTML);
@@ -118,8 +129,6 @@
                 .setPopup(popup);
         });
     });
-
-
 
     function filterMarker(checkType,markerType){
         document.getElementById(checkType).addEventListener('change', function () {

@@ -37,6 +37,14 @@ body {
     cursor: pointer;
 }
 
+.marker-encampment {
+    background-image: url('../img/tent.png');
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
 .marker-package1{
     background-color: #AE4040;
     background-size: cover;
