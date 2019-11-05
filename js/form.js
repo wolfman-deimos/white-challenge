@@ -1,12 +1,14 @@
-$('#myForm').submit(function (e) {
+$('#fieldform').submit(function (e) {
     e.preventDefault();
 
     let fname = $('#fname').val();
     let lname = $('#lname').val();
     let age = $('#age').val();
     let sex = $('#sex').children('option:selected').val();
+    let military = $('#military').children('option:selected').val();
     let rank = $('#rank').val();
-    let housing = $('#housing').children('option:selected').val();
+    let housing = $('#selectresidence').children('option:selected').val();
+    let other = $('#other_residence').val();
     let phone = $('#phone').val();
     let package = $('#care_package').children('option:selected').val();
 
@@ -15,8 +17,10 @@ $('#myForm').submit(function (e) {
         last_name: lname,
         age: age,
         sex: sex,
+        military: military,
         rank: rank,
         housing: housing,
+        other: other,
         phone: phone,
         care_package: package
     };
@@ -34,7 +38,4 @@ $('#myForm').submit(function (e) {
         .then()
         .catch();
 
-
-    //alert(fname + " " + lname + " " + age + " " + sex + " " + rank + " " + housing + " " + phone + " " + package);
-    $(this).reset();
 });
