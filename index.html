@@ -66,17 +66,13 @@
 
     <form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
 
-            <div class="form-group">
-                <input type="text" name="fname" placeholder=" First name"><br>
-            </div>
-
         <!--Content for HOME PANEL -->
             <div class="form-group">
-                <input type="text" name="fname" id="fname" placeholder=" First name"><br>
+                <input type="text" name="fname" id="fname" placeholder=" First name" required><br>
             </div>
 
             <div class="form-group">
-                <input type="text" name="lname" id="lname" placeholder="Last name"><br>
+                <input type="text" name="lname" id="lname" placeholder="Last name" required><br>
             </div>
 
             <div class="form-group">
@@ -84,8 +80,7 @@
             </div>
 
             <div class="form-group">
-                <select>
-                    <option>Male</option>
+                <select id="sex">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Prefer not to say</option>
@@ -94,7 +89,7 @@
             </div>
 
             <div class="form-group">
-                <select>
+                <select id="military">
                     <option>Air Force</option>
                     <option>Army</option>
                     <option>Coast Guard</option>
@@ -104,7 +99,7 @@
             </div>
 
             <div class="form-group">
-                 <input type="text" name="rank" placeholder="Rank"><br>
+                 <input type="text" name="rank" id="rank" placeholder="Rank"><br>
             </div>
 
 
@@ -119,8 +114,9 @@
             </select>
 
             <label id="otherresidence">
-                <input type="text" placeholder="Describe your situation.">
-            </label><br>
+                <input type="text" id="other_residence" placeholder="Describe your situation.">
+            </label>
+            <br>
 
             <div class="form-group">
                 <input type="text" id="phone" placeholder="Best number to call?">
@@ -131,13 +127,15 @@
             <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
             <br>
             <div class="form-group">
-                <select>
+                <select id="care_package">
                     <option selected>Which package?</option>
                     <option id="redpkg">Red Package</option>
                     <option>Package 2</option>
                     <option>Package 3</option>
                 </select>
             </div>
+
+            <button type="submit">Submit</button>
     </form>
 
     <footer class="fixed-bottom accent-lblue border-top border-dark">
@@ -163,6 +161,7 @@
     <script src="js/foundations.js"></script>
     <script src="js/mapbox-functions.js"></script>
     <script src="js/resources.js"></script>
+    <script src="js/form.js"></script>
 </body>
 </html>
 
