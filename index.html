@@ -54,16 +54,23 @@
     <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
 <body>
+<nav class="navbar navbar-light border-bottom border-dark">
+    <a class="navbar-brand p-0" href="#">
+        <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+    </a>
+</nav>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
-<nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Resources</a>
-        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+
+<form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
+
+    <div class="form-group">
+        <input type="text" name="fname" placeholder=" First name"><br>
+
     </div>
 </nav>
+  
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <!--Content for HOME PANEL -->
@@ -80,28 +87,43 @@
                 <input type="text" name="age" id="age" placeholder="Age"><br>
             </div>
 
-            <div class="form-group">
-                <select id="sex">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Prefer not to say</option>
-                </select><br>
-            </div>
-            <!-- todo: Need branch here -->
-            <div class="form-group">
-                <input type="text" name="rank" id="rank" placeholder="Rank"><br>
-            </div>
+    <div class="form-group">
+        <select>
+            <option>Male</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+        </select><br>
+    </div>
 
-            <!--        todo: There is a option in bootstrap that shows a textbox when a certain option is clicked, for the other option; if selected we should have them fill in a brief description of their living situation-->
+    <div class="form-group">
+        <select>
+            <option>Air Force</option>
+            <option>Army</option>
+            <option>Coast Guard</option>
+            <option>Marines</option>
+            <option>Navy</option>
+        </select><br>
+    </div>
+    <div class="form-group">
+        <input type="text" name="rank" placeholder="Rank"><br>
+    </div>
 
-            <div class="form-group">
-                <select id="housing">
-                    <option>Renting</option>
-                    <option>Owning</option>
-                    <option>No current residence</option>
-                    <option>Other</option>
-                </select><br>
-            </div>
+
+<!--    <div class="form-group">-->
+    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
+    <br>
+    <select class="mb-2" name="selectList" id="selectresidence">
+        <option id="renting" >Renting</option>
+        <option id="owning">Owning</option>
+        <option id="nocurrent">No current residence</option>
+        <option id="other">Other</option>
+        </select>
+        <label id="otherresidence">
+            <input type="text" placeholder="Describe your situation.">
+        </label><br>
+<!--    </div>-->
+
 
             <div class="form-group">
                 <input type="text" id="phone" placeholder="Best number to call?">
@@ -109,29 +131,15 @@
 
             <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
 
-            <div class="form-group">
-                <select id="care_package">
-                    <option>Package 1</option>
-                    <option>Package 2</option>
-                    <option>Package 3</option>
-                </select>
-            </div>
-
-            <!--    todo: would like to add a way to access the current location of a person and add it to the person object, this will be important to adding it to the mapbox-->
-
-            <input type="submit" value="Submit">
-
-        </form>
-    </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <!--CONTENT OF RESOURCES PANEL -->
-        <div class="row p-3">
-            <div id='map' class="col-sm-12 col-md-7"></div>
-            <div id="information" class="col-sm-12 col-md-5"></div>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <h1>Test</h1>
+    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
+    <br>
+    <div class="form-group">
+        <select>
+            <option selected>Which package?</option>
+        <option id="redpkg">Red Package</option>
+        <option>Package 2</option>
+        <option>Package 3</option>
+    </select>
     </div>
 </div>
 
@@ -192,6 +200,18 @@
     });
 </script>
 
+<footer class="fixed-bottom accent-lblue border-top border-dark">
+<a class="navbar-brand p-0" href="#">
+    <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+</a>
+</footer>
+
+<!--bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--custom js-->
+<script src="js/foundations.js"></script>
 </body>
 </html>
 
