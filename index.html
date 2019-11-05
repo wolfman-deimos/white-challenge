@@ -53,28 +53,24 @@
     </style>
     <link rel="stylesheet" href="css/whtchl-custcss.css">
 </head>
+
 <body>
-<nav class="navbar navbar-light border-bottom border-dark">
-    <a class="navbar-brand p-0" href="#">
-        <img src="img/logo-1.svg" height="50" class="p-0" alt="">
-    </a>
-</nav>
+    <nav class="navbar navbar-light border-bottom border-dark">
+        <a class="navbar-brand p-0" href="#">
+            <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+        </a>
+    </nav>
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
 
-<form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
+    <form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
 
-    <div class="form-group">
-        <input type="text" name="fname" placeholder=" First name"><br>
+            <div class="form-group">
+                <input type="text" name="fname" placeholder=" First name"><br>
+            </div>
 
-    </div>
-</nav>
-  
-<div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <!--Content for HOME PANEL -->
-        <form target="_self" method="post" id="myForm">
             <div class="form-group">
                 <input type="text" name="fname" id="fname" placeholder=" First name"><br>
             </div>
@@ -87,43 +83,44 @@
                 <input type="text" name="age" id="age" placeholder="Age"><br>
             </div>
 
-    <div class="form-group">
-        <select>
-            <option>Male</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Prefer not to say</option>
-        </select><br>
-    </div>
+            <div class="form-group">
+                <select>
+                    <option>Male</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Prefer not to say</option>
+                </select>
+                <br>
+            </div>
 
-    <div class="form-group">
-        <select>
-            <option>Air Force</option>
-            <option>Army</option>
-            <option>Coast Guard</option>
-            <option>Marines</option>
-            <option>Navy</option>
-        </select><br>
-    </div>
-    <div class="form-group">
-        <input type="text" name="rank" placeholder="Rank"><br>
-    </div>
+            <div class="form-group">
+                <select>
+                    <option>Air Force</option>
+                    <option>Army</option>
+                    <option>Coast Guard</option>
+                    <option>Marines</option>
+                    <option>Navy</option>
+                </select><br>
+            </div>
+
+            <div class="form-group">
+                 <input type="text" name="rank" placeholder="Rank"><br>
+            </div>
 
 
 <!--    <div class="form-group">-->
-    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
-    <br>
-    <select class="mb-2" name="selectList" id="selectresidence">
-        <option id="renting" >Renting</option>
-        <option id="owning">Owning</option>
-        <option id="nocurrent">No current residence</option>
-        <option id="other">Other</option>
-        </select>
-        <label id="otherresidence">
-            <input type="text" placeholder="Describe your situation.">
-        </label><br>
-<!--    </div>-->
+            <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
+             <br>
+             <select class="mb-2" name="selectList" id="selectresidence">
+                <option id="renting" >Renting</option>
+                 <option id="owning">Owning</option>
+                <option id="nocurrent">No current residence</option>
+                <option id="other">Other</option>
+            </select>
 
+            <label id="otherresidence">
+                <input type="text" placeholder="Describe your situation.">
+            </label><br>
 
             <div class="form-group">
                 <input type="text" id="phone" placeholder="Best number to call?">
@@ -131,89 +128,41 @@
 
             <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
 
-    <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
-    <br>
-    <div class="form-group">
-        <select>
-            <option selected>Which package?</option>
-        <option id="redpkg">Red Package</option>
-        <option>Package 2</option>
-        <option>Package 3</option>
-    </select>
-    </div>
-</div>
+            <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
+            <br>
+            <div class="form-group">
+                <select>
+                    <option selected>Which package?</option>
+                    <option id="redpkg">Red Package</option>
+                    <option>Package 2</option>
+                    <option>Package 3</option>
+                </select>
+            </div>
+    </form>
+
+    <footer class="fixed-bottom accent-lblue border-top border-dark">
+        <a class="navbar-brand p-0" href="#">
+            <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+        </a>
+    </footer>
 
 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<!-- Mapbox JS -->
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
-<!-- Mapbox Geocoder Util Methods -->
-<script src="js/mapbox-geocoder-utils.js"></script>
-<!-- Custom JS -->
-<script src="js/keys.js"></script>
-<script src="js/mapbox-functions.js"></script>
-<script src="js/resources.js"></script>
-<script>
-    $('#myForm').submit(function (e) {
-        e.preventDefault();
-
-        let fname = $('#fname').val();
-        let lname = $('#lname').val();
-        let age = $('#age').val();
-        let sex = $('#sex').children('option:selected').val();
-        let rank = $('#rank').val();
-        let housing = $('#housing').children('option:selected').val();
-        let phone = $('#phone').val();
-        let package = $('#care_package').children('option:selected').val();
-
-        let user = {
-            first_name: fname,
-            last_name: lname,
-            age: age,
-            sex: sex,
-            rank: rank,
-            housing: housing,
-            phone: phone,
-            care_package: package
-        };
-
-        //const user_info = {title: 'Users', body: JSON.stringify(user)};
-        const url = 'http://localhost:3000/users';
-        const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(user),
-        };
-        fetch(url, options)
-            .then()
-            .catch();
-
-
-         //alert(fname + " " + lname + " " + age + " " + sex + " " + rank + " " + housing + " " + phone + " " + package);
-        $(this).reset();
-    });
-</script>
-
-<footer class="fixed-bottom accent-lblue border-top border-dark">
-<a class="navbar-brand p-0" href="#">
-    <img src="img/logo-1.svg" height="50" class="p-0" alt="">
-</a>
-</footer>
-
-<!--bootstrap js -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!--custom js-->
-<script src="js/foundations.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!-- Mapbox JS -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <!-- Mapbox Geocoder Util Methods -->
+    <script src="js/mapbox-geocoder-utils.js"></script>
+    <!--bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--custom js-->
+    <script src="js/keys.js"></script>
+    <script src="js/foundations.js"></script>
+    <script src="js/mapbox-functions.js"></script>
+    <script src="js/resources.js"></script>
 </body>
 </html>
 
-
-<!-- Merge test -->
