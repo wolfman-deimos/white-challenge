@@ -8,9 +8,17 @@
     --shade-wht: #E5EFF1;
 }
 
+
 .mainblue-bg {
     background-color: var(--main-blue);
+}
+
+.text-color-white{
     color: var(--shade-wht);
+}
+
+.text-shadow{
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .red-bg {
@@ -114,3 +122,17 @@ body {
     display: none;
 }
 
+.text-varela{
+    font-family: 'Varela', sans-serif;
+}
+
+.text-crimsonPro{
+    font-family: 'Crimson Pro', serif;
+}
+
+.texas-banner{
+    background-image: url("../img/cityscape.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100px;
+    background-position: center top;
+}
