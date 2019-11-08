@@ -10,24 +10,25 @@ $(document).ready(function(){
         }
     });
 
-    $('#pkgselect').click(function(){
-        if($('#pkgselect').val() === "red"){
-            $('#redcard').fadeIn();
-            $("#whtcard").hide();
-            $("#bluecard").hide();
-        } else if ($("#pkgselect").val() === "wht") {
-            $("#whtcard").fadeIn();
-            $("#redcard").hide();
-            $("#bluecard").hide();
-        } else if ($("#pkgselect").val() === "blue") {
-            $("#bluecard").fadeIn();
-            $("#redcard").hide();
-            $("#whtcard").hide();
-        } else {
-            $("#bluecard").hide();
-            $("#redcard").hide();
-            $("#whtcard").hide();
+    $('#care_package').on({
+        click: function() {
+            $("#redcard, #whtcard, #bluecard").fadeIn(1500);
+            },
+        change: function() {
+            if ($('#care_package').val() === "red") {
+                $("#redcard").fadeTo("slow", 1);
+                $("#whtcard").fadeTo("slow", .15);
+                $("#bluecard").fadeTo("slow", .15);
+            } else if ($("#care_package").val() === "white") {
+                $("#whtcard").fadeTo("slow", 1);
+                $("#redcard").fadeTo("slow", .15);
+                $("#bluecard").fadeTo("slow", .15);
+            } else if ($("#care_package").val() === "blue") {
+                $("#bluecard").fadeTo("slow", 1);
+                $("#redcard").fadeTo("slow", .15);
+                $("#whtcard").fadeTo("slow", .15);
+            }
         }
-        ;
+
+        });
     });
-});
