@@ -48,7 +48,10 @@
                 <label class="form-check-label text-color-white text-crimsonPro" for="encampmentCheck">Show Homeless Encampments</label>
             </div>
         </div>
-        <div id="information" class="col-5 text-crimsonPro"></div>
+        <div class="col-5">
+            <div id="information" class="text-crimsonPro "></div>
+            <img src="img/ribbonv2.png" alt="" class="ml-5 pl-3 mt-3 w-75" style="height: 50vh">
+        </div>
     </div>
 </main>
 
@@ -117,7 +120,7 @@
     });
 
     foundations.forEach(function (info) {
-        let popupHTML = "<h5 class='text-center'>"+  info.name +"</h5><h6 style='text-align: center'><a href='" + info.website + "' target='_blank'>Website</a></h6><h6 class='text-center'><a href='mailto:" + info.email + "'>" + info.email + "</a></h6><h6 class='text-center'><a href='" + info.phone + "'>" + info.phone + "</a></h6>";
+        let popupHTML = "<h6 class='text-center'>"+  info.name +"</h6><h6 style='text-align: center'><a href='" + info.website + "' target='_blank'>Website</a></h6><h6 class='text-center'><a href='mailto:" + info.email + "'>" + info.email + "</a></h6><h6 class='text-center'><a href='" + info.phone + "'>" + info.phone + "</a></h6>";
         geocode(info.address, mapboxKey).then(function(coordinates) {
             var popup = new mapboxgl.Popup()
                 .setHTML(popupHTML);
