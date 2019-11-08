@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Mapbox CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro|Varela&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/whtchl-custcss.css">
+    <link rel="stylesheet" href="css/resources">
 </head>
-<body>
-<header>
-    <h1>My Resources</h1>
-</header>
+<body class="mainblue-bg">
+<div class="jumbotron jumbotron-fluid py-3 texas-banner d-flex justify-content-center">
+    <div class="container m-0">
+        <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow">My Resources</h1>
+    </div>
+</div>
 
 <main>
     <div class="row p-3">
@@ -21,36 +25,33 @@
             <div id='map'></div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="redCheck" value="Package1" checked>
-                <label class="form-check-label" for="redCheck">Show Package 1</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="redCheck">Show Package 1</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="blueCheck" value="Package2" checked>
-                <label class="form-check-label" for="blueCheck">Show Package 2</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="blueCheck">Show Package 2</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="greenCheck" value="Package3" checked>
-                <label class="form-check-label" for="greenCheck">Show Package 3</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="greenCheck">Show Package 3</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="foundationCheck" value="foundationCheck" checked>
-                <label class="form-check-label" for="foundationCheck">Show Foundations</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="foundationCheck">Show Foundations</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="depoCheck" value="depoCheck" checked>
-                <label class="form-check-label" for="depoCheck">Show Package Depo</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="depoCheck">Show Package Depo</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="encampmentCheck" value="encampmentCheck" checked>
-                <label class="form-check-label" for="encampmentCheck">Show Homeless Encampments</label>
+                <label class="form-check-label text-color-white text-crimsonPro" for="encampmentCheck">Show Homeless Encampments</label>
             </div>
         </div>
-        <div id="information" class="col-5"></div>
+        <div id="information" class="col-5 text-crimsonPro"></div>
     </div>
 </main>
 
-<footer>
-    <h6>Footer</h6>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -61,6 +62,7 @@
 <script src="js/mapbox-geocoder-utils.js"></script>
 <!-- Custom JS -->
 <script src="js/foundations.js"></script>
+<script src="js/encampments.js"></script>
 <script src="js/keys.js"></script>
 <script src="js/mapbox-functions.js"></script>
 <script>
@@ -79,7 +81,7 @@
         map.setZoom(9);
     });
 
-    placeMarkerAndPopup(foundations, mapboxKey, map);
+
     displayFoundations();
     filterMarker('redCheck','marker-package1');
     filterMarker('blueCheck','marker-package2');
@@ -88,7 +90,6 @@
     filterMarker('depoCheck','marker-depo');
     filterMarker('encampmentCheck','marker-encampment');
 
-    // todo: for some reason the collapsible is moving over to the right with every row, I think it should be uniform to the right
     function displayFoundations(){
         let bodyElement = document.getElementById("information");
         let html = "<div class='accordion' id='accordionExample'>";
@@ -96,17 +97,27 @@
         foundations.forEach(function (foundation, index) {
             let heading = "heading" + index;
             let collapse = "collapse" + index;
-            let information = "<div class='found_inf'><h6>" + foundation.address + "</h6><p><a href='" + foundation.website + "' target='_blank'>" + foundation.website + "</a></p><p><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
+            let information = "<div class='found_inf'><h6>" + foundation.address + "</h6><p><a href='" + foundation.website + "' target='_blank'>Website</a></p><p><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
 
-            html += "<div class = 'card'><div class='card-header' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
+            html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg'><div class='card-header w-100 h-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100 h-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
         });
 
         html += "</div>";
         bodyElement.innerHTML = html;
     }
 
+
+
+    encampments.forEach(function (encampment) {
+            var addRibbon = document.createElement('div');
+            addRibbon.className = 'marker-encampment';
+            var marker = new mapboxgl.Marker(addRibbon)
+                .setLngLat(encampment.address)
+                .addTo(map)
+    });
+
     foundations.forEach(function (info) {
-        let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h3><p>Description Here</p><h4><a href='mailto:" + info.email + "</a></h4><h4>" + info.phone + "</h4>"
+        let popupHTML = "<h6 style='text-align: center'><a href='" + info.website + "' target='_blank'>" + info.name + "</a></h6><p>Description Here</p><h6><a href='mailto:" + info.email + "'>" + info.email + "</a></h6><h6><a href='" + info.phone + "'>" + info.phone + "</a></h6>";
         geocode(info.address, mapboxKey).then(function(coordinates) {
             var popup = new mapboxgl.Popup()
                 .setHTML(popupHTML);
@@ -118,8 +129,6 @@
                 .setPopup(popup);
         });
     });
-
-
 
     function filterMarker(checkType,markerType){
         document.getElementById(checkType).addEventListener('change', function () {
