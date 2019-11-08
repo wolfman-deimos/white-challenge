@@ -97,7 +97,7 @@
         foundations.forEach(function (foundation, index) {
             let heading = "heading" + index;
             let collapse = "collapse" + index;
-            let information = "<div class='found_inf'><h6>" + foundation.address + "</h6><p><a href='" + foundation.website + "' target='_blank'>Website</a></p><p><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
+            let information = "<div class='found_inf'><p class='text-center'>" +  foundation.summary + "</p><h6 class='text-center'>" + foundation.address + "</h6><p class='text-center'><a href='" + foundation.website + "' target='_blank'>Website</a></p><p class='text-center'><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p class='text-center'><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
 
             html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg'><div class='card-header w-100 h-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100 h-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
         });
