@@ -17,16 +17,18 @@ $(document).ready(function(){
         change: function() {
             if ($('#care_package').val() === "red") {
                 $("#redcard").fadeTo("slow", 1);
-                $("#whtcard").fadeTo("slow", .15);
-                $("#bluecard").fadeTo("slow", .15);
+                $("#whtcard, #bluecard").fadeTo("slow", .15);
+                // $("#bluecard").fadeTo("slow", .15);
             } else if ($("#care_package").val() === "white") {
                 $("#whtcard").fadeTo("slow", 1);
-                $("#redcard").fadeTo("slow", .15);
-                $("#bluecard").fadeTo("slow", .15);
+                $("#redcard, #bluecard").fadeTo("slow", .15);
+                // $("#bluecard").fadeTo("slow", .15);
             } else if ($("#care_package").val() === "blue") {
                 $("#bluecard").fadeTo("slow", 1);
-                $("#redcard").fadeTo("slow", .15);
-                $("#whtcard").fadeTo("slow", .15);
+                $("#redcard, #whtcard").fadeTo("slow", .15);
+                // $("#whtcard").fadeTo("slow", .15);
+            } else if ($("#care_package").val() === "none") {
+                $("#redcard, #whtcard, #bluecard").fadeTo("slow", 1);
             }
         }
 
