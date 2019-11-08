@@ -63,80 +63,128 @@
 <!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+        <form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
 
-    <form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
+            <!--Content for HOME PANEL -->
+                <div class="form-group">
+                    <input type="text" name="fname" id="fname" placeholder=" First name" required><br>
+                </div>
 
-        <!--Content for HOME PANEL -->
-            <div class="form-group">
-                <input type="text" name="fname" id="fname" placeholder=" First name" required><br>
-            </div>
+                <div class="form-group">
+                    <input type="text" name="lname" id="lname" placeholder="Last name" required><br>
+                </div>
 
-            <div class="form-group">
-                <input type="text" name="lname" id="lname" placeholder="Last name" required><br>
-            </div>
+                <div class="form-group">
+                    <input type="text" name="age" id="age" placeholder="Age"><br>
+                </div>
 
-            <div class="form-group">
-                <input type="text" name="age" id="age" placeholder="Age"><br>
-            </div>
+                <div class="form-group">
+                    <select id="sex">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Prefer not to say</option>
+                    </select>
+                    <br>
+                </div>
 
-            <div class="form-group">
-                <select id="sex">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Prefer not to say</option>
+                <div class="form-group">
+                    <select id="military">
+                        <option>Air Force</option>
+                        <option>Army</option>
+                        <option>Coast Guard</option>
+                        <option>Marines</option>
+                        <option>Navy</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                     <input type="text" name="rank" id="rank" placeholder="Rank"><br>
+                </div>
+
+
+    <!--    <div class="form-group">-->
+                <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
+                 <br>
+                 <select class="mb-2" name="selectList" id="selectresidence">
+                    <option id="renting" >Renting</option>
+                     <option id="owning">Owning</option>
+                    <option id="nocurrent">No current residence</option>
+                    <option id="other">Other</option>
                 </select>
+
+                <label id="otherresidence">
+                    <input type="text" id="other_residence" placeholder="Describe your situation.">
+                </label>
                 <br>
+
+                <div class="form-group">
+                    <input type="text" id="phone" placeholder="Best number to call?">
+                </div>
+
+                <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
+
+                <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
+                <br>
+                <div class="form-group">
+                    <select id="care_package">
+                        <option value="none" selected>Which package?</option>
+                        <option value="red">Red Package</option>
+                        <option value="white">White Package</option>
+                        <option value="blue">Blue Package</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-8">
+        <div class="container">
+            <div class="d-flex flex-row carddiv">
+                    <div id="redcard" class="card red-bg displayNone" style="width: 20rem;">
+                        <div class="w-75 mx-auto">
+                            <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
+                        </div>
+                        <div class="infoparent card-body">
+                            <h5 class="card-title">Red Package</h5>
+                            <p class="card-text">Focused on providing items tailored for our male populations in need we find.</p>
+                        </div>
+                        <span id="redinfo" class="info badge badge-pill badge-dark">?</span>
+
+
+                    </div>
+
+                    <div id="whtcard" class="wht-bg card displayNone" style="width: 20rem;">
+                        <div class="w-75 mx-auto">
+                            <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
+                        </div>
+                        <div class="infoparent card-body">
+                            <h5 class="card-title">White Package</h5>
+                            <p class="card-text">Focused on providing a gender-neutral set of items.</p>
+                        </div>
+                        <span id="whiteinfo" class="info badge badge-pill badge-dark">?</span>
+
+                    </div>
+
+
+                    <div id="bluecard" class="card mainblue-bg displayNone" style="width: 20rem;">
+                        <div class="w-75 mx-auto">
+                            <img class="card-img-top img-fluid max-width: 100% height: auto" src="img/pkgfiller.jpeg" alt="Card image cap">
+                        </div>
+                        <div class="infoparent card-body text-color-white">
+                            <h5 class="card-title">Blue Package</h5>
+                            <p class="card-`text`">Focused on providing items tailored for our female populations in need we find.</p>
+                        </div>
+                        <span id="blueinfo" class="info badge badge-pill badge-dark">?</span>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <select id="military">
-                    <option>Air Force</option>
-                    <option>Army</option>
-                    <option>Coast Guard</option>
-                    <option>Marines</option>
-                    <option>Navy</option>
-                </select><br>
-            </div>
-
-            <div class="form-group">
-                 <input type="text" name="rank" id="rank" placeholder="Rank"><br>
-            </div>
-
-
-<!--    <div class="form-group">-->
-            <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
-             <br>
-             <select class="mb-2" name="selectList" id="selectresidence">
-                <option id="renting" >Renting</option>
-                 <option id="owning">Owning</option>
-                <option id="nocurrent">No current residence</option>
-                <option id="other">Other</option>
-            </select>
-
-            <label id="otherresidence">
-                <input type="text" id="other_residence" placeholder="Describe your situation.">
-            </label>
-            <br>
-
-            <div class="form-group">
-                <input type="text" id="phone" placeholder="Best number to call?">
-            </div>
-
-            <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
-
-            <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
-            <br>
-            <div class="form-group">
-                <select id="care_package">
-                    <option selected>Which package?</option>
-                    <option id="redpkg">Red Package</option>
-                    <option>Package 2</option>
-                    <option>Package 3</option>
-                </select>
-            </div>
-
-            <button type="submit">Submit</button>
-    </form>
+        </div>
+    </div>
+</div>
 
     <footer class="fixed-bottom accent-lblue border-top border-dark">
         <a class="navbar-brand p-0" href="#">
@@ -145,22 +193,19 @@
     </footer>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- Mapbox JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
     <!-- Mapbox Geocoder Util Methods -->
     <script src="js/mapbox-geocoder-utils.js"></script>
-    <!--bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--custom js-->
     <script src="js/keys.js"></script>
     <script src="js/foundations.js"></script>
     <script src="js/mapbox-functions.js"></script>
     <script src="js/resources.js"></script>
+    <script src="js/customjs.js"></script>
     <script src="js/form.js"></script>
 </body>
 </html>
