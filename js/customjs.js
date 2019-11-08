@@ -1,6 +1,11 @@
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 
+    $('#redinfo').popover({content: "Combines above-average sized socks and seasonally appropriate gear with toiletries and hygiene products with additional packaged food and water", trigger:"hover"});
+    $('#whiteinfo').popover({content: "Combines seasonally sensitive clothing and gear for average sizes with hygiene products and oral care products with additional food and water", trigger: "hover"});
+    $('#blueinfo').popover({content: "Combines underclothing with seasonally appropriate gear with toiletries and hygiene products including feminine hygiene with additional food and water", trigger: "hover"});
+
+
     $('#selectresidence').change(function(){
         if($('#selectresidence option:selected').text() == "Other"){
             $('#otherresidence').show();
