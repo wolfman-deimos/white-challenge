@@ -59,6 +59,7 @@ body {
     height: 400px;
 }
 
+
 .infoparent {
     position: relative;
 }
@@ -74,6 +75,7 @@ body {
 .popupCard{
     /*Styling the popup information*/
 }
+
 
 .marker-foundation {
     background-image: url('../img/purple-ribbon-edited.png');
@@ -141,6 +143,10 @@ body {
 .foundation-address{
     color: blue;
     cursor: pointer;
+}
+
+.top-5{
+    top: 5px;
 }
 
 
