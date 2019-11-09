@@ -5,7 +5,7 @@ const foundations = [
         name: "Soldier's Angels' Homeless/Low Income Veteran Support",
         website: "https://soldiersangels.org/Homeless/Low-Income-Veteran-Support.html",
         address: "2895 NE Loop 410 Suite 107, San Antonio, TX 78218",
-        phone: ["210-629-0024"],
+        phone: ["210-629-0020"],
         email: '',
         summary: 'Soldiers’ Angels hosts and organizes events and initiatives that benefit homeless & low income veterans.'
     },
@@ -21,7 +21,7 @@ const foundations = [
         name: "Wounded Warrior Resource Center",
         website: "https://www.woundedwarriorproject.org/programs/wwp-resource-center#",
         address: "12672 Silicon Drive Suite 105, San Antonio, TX 78249",
-        phone: ["210-561-2656"],
+        phone: ["904-405-1213"],
         email: 'sf-rc@woundedwarriorproject.org',
         summary: 'WWP serves veterans and service members who incurred a physical or mental injury, illness, or wound while serving in the military on or after September 11, 2001. Family members of these warriors are also eligible for free WWP programs and services.'
     },
