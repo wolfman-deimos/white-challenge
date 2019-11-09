@@ -119,8 +119,31 @@
 </div>
 
 
+    <!--    <div class="form-group">-->
+                <label class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</label>
+                 <br>
+                 <select class="mb-2" name="selectList" id="selectresidence">
+                    <option id="renting" >Renting</option>
+                     <option id="owning">Owning</option>
+                    <option id="nocurrent">No current residence</option>
+                    <option id="other">Other</option>
+                </select>
 
 
+
+
+                <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
+
+                <label class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</label>
+                <br>
+                <div class="form-group">
+                    <select id="care_package">
+                        <option value="none" selected>Which package?</option>
+                        <option value="red">Red Package</option>
+                        <option value="white">White Package</option>
+                        <option value="blue">Blue Package</option>
+                    </select>
+                </div>
 
 
 
@@ -273,7 +296,102 @@
     <script src="js/mapbox-functions.js"></script>
     <script src="js/resources.js"></script>
     <script src="js/customjs.js"></script>
-    <script src="js/form.js"></script>
+<!--    <script src="js/form.js"></script>-->
+    <script>
+        $('#fieldform').submit(function (e) {
+            e.preventDefault();
+
+            let fname = $('#fname').val();
+            let lname = $('#lname').val();
+            let age = $('#age').val();
+            let sex = $('#sex').children('option:selected').val();
+            let military = $('#military').children('option:selected').val();
+            let rank = $('#rank').val();
+            let housing = $('#selectresidence').children('option:selected').val();
+            let other = $('#other_residence').val();
+            let phone = $('#phone').val();
+            let package = $('#care_package').children('option:selected').val();
+            let user = {};
+            let options = {
+                enableHighAccuracy: true,
+                timeout: 5000
+            };
+
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log("Longitud: " + position.coords.longitude + " Latitude: " + position.coords.latitude);
+
+                    user.first_name = fname;
+                    user.last_name = lname;
+                    user.age = age;
+                    user.sex = sex;
+                    user.military = military;
+                    user.rank = rank;
+                    user.housing = housing;
+                    user.other = other;
+                    user.phone = phone;
+                    user.care_package = package;
+                    user.last_location = {
+                        longitud: position.coords.longitude,
+                        latitud: position.coords.latitude
+                    };
+
+
+                }, function (error) {
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            console.log("User denied the request for Geolocation.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            console.log("Location information is unavailable.");
+                            break;
+                        case error.TIMEOUT:
+                            console.log("The request to get user location timed out.");
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            console.log("An unknown error occurred.");
+                            break;
+                    }
+
+                },options);
+            }
+            else {
+                user.first_name = fname;
+                user.last_name = lname;
+                user.age = age;
+                user.sex = sex;
+                user.military = military;
+                user.rank = rank;
+                user.housing = housing;
+                user.other = other;
+                user.phone = phone;
+                user.care_package = package;
+                user.last_location = {
+                    longitud: -98.4951,
+                    latitud: 29.4246
+                };
+
+            }
+
+            setTimeout(function () {
+                const user_info = {title: 'Users', body: JSON.stringify(user)};
+                const url = 'http://localhost:3000/users';
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                };
+                fetch(url, options)
+                    .then()
+                    .catch();
+
+                $(this).reset();
+            }, 5100);
+
+        });
+    </script>
 </body>
 </main>
 </html>
