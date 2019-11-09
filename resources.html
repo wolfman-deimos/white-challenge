@@ -21,16 +21,22 @@
         }
     </style>
 </head>
-<body class="mainblue-bg">
+<body class="bg-gradient">
 <div class="jumbotron jumbotron-fluid py-3 texas-banner d-flex justify-content-center">
-    <div class="container m-0">
-        <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow">My Resources</h1>
+    <div class="container-fluid m-0">
+        <nav><ul class="d-flex position-absolute topright">
+            <li class="ml-1 border-radius5"><a class="p-1" href="">Home</a></li>
+            <li class="ml-1 border-radius5"><a class="p-1" href="index.html">Carepackage</a></li>
+            <li class="ml-1 border-radius5"><a class="p-1" href="">Volunteer</a></li>
+        </ul></nav>
+        <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow float-center">Resources</h1>
+
     </div>
 </div>
 
 <main>
     <div class="row p-3">
-        <div class="col-7">
+        <div class="col-md-7">
             <div id='map'></div>
 
             <div class="form-check form-check-inline">
@@ -58,7 +64,7 @@
                 <label class="form-check-label text-color-white text-crimsonPro" for="encampmentCheck">Show Homeless Encampments</label>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-md-5">
             <div id="information" class="text-crimsonPro "></div>
             <img src="img/ribbonv2.png" alt="" class="ml-5 pl-3 mt-3 w-75" style="height: 50vh">
         </div>
@@ -113,7 +119,7 @@
             let collapse = "collapse" + index;
             let information = "<div class='found_inf'><p class='text-center'>" +  foundation.summary + "</p><h6 class='text-center foundation-address'>" + foundation.address + "</h6><p class='text-center'><a href='" + foundation.website + "' target='_blank'>Website</a></p><p class='text-center'><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p class='text-center'><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
 
-            html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg'><div class='card-header w-100 h-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100 h-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
+            html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg m-0 p-0'><div class='card-header w-100 h-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100 h-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
         });
 
         html += "</div>";

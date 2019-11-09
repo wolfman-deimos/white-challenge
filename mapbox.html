@@ -13,81 +13,16 @@
             height: 400px;
             margin: 0 auto;
         }
-
-        .marker-foundation {
-            background-image: url('img/purple-ribbon-edited.png');
-            background-size: cover;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .marker-package1{
-            background-color: #AE4040;
-            background-size: cover;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .displayNone{
-            display: none;
-        }
-
-.filter-group {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1;
-    border-radius: 3px;
-    width: 120px;
-    color: #fff;
-}
-
-.filter-group input[type=checkbox]:first-child + label {
-    border-radius: 3px 3px 0 0;
-}
-
-.filter-group label:last-child {
-    border-radius: 0 0 3px 3px;
-    border: none;
-}
-
-.filter-group input[type=checkbox] {
-    display: none;
-}
-
-.filter-group input[type=checkbox] + label {
-    background-color: #3386c0;
-    display: block;
-    cursor: pointer;
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-.filter-group input[type=checkbox] + label {
-    background-color: #3386c0;
-    text-transform: capitalize;
-}
-
-.filter-group input[type=checkbox] + label:hover,
-.filter-group input[type=checkbox]:checked + label {
-    background-color: #4ea0da;
-}
-
-.filter-group input[type=checkbox]:checked + label:before {
-    content: '✔';
-    margin-right: 5px;
-}
-
     </style>
 </head>
 <body>
 
 
-
+<form>
+    <label for="location_deliver">Where Package would be deliver?</label>
+    <p id="location_deliver"></p>
+    <button id="get_location">Get my current location</button>
+</form>
 
 <div id='map'></div>
 
@@ -95,9 +30,9 @@
 <!--    todo: Needs a filter option for the various types of markers that are going to be added (foundations, package1, package2 etc,)-->
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
-<script src="js/mapbox-functions.js"></script>
-<script src="js/foundations.js"></script>
 <script>
+    var longitud = 0;
+    var latitude = 0;
 
     mapboxgl.accessToken = mapboxKey;
     var map = new mapboxgl.Map({
@@ -105,62 +40,81 @@
         style: 'mapbox://styles/mapbox/streets-v11'
     });
 
-    var markers = [];
+    map.setCenter([longitud, latitude]);
+    map.setZoom(15);
 
-    map.addControl(new mapboxgl.NavigationControl());
 
-    geocode("San Antonio", mapboxKey).then(function(result) {
-        console.log(result);
-        map.setCenter(result);
-        map.setZoom(9);
-    });
+    let options = {
+            enableHighAccuracy: true,
+            timeout: 5000
+    };
 
-    foundations.forEach(function (info) {
-        let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "'>" + info.name + "</a></h3><p>Description Here</p><h4>" + info.email + "</h4><h4>" + info.phone + "</h4>"
-        geocode(info.address, mapboxKey).then(function(coordinates) {
-            var popup = new mapboxgl.Popup()
-                .setHTML(popupHTML);
-            var addRibbon = document.createElement('div');
-            addRibbon.className = 'marker-foundation';
-            var marker = new mapboxgl.Marker(addRibbon)
-                .setLngLat(coordinates)
-                // .addTo(map)
-                .setPopup(popup);
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log("Longitud: " + position.coords.longitude + " Latitude: " + position.coords.latitude);
+            longitud = position.coords.longitude;
+            latitude = position.coords.latitude;
+            map.setCenter([position.coords.longitude, position.coords.latitude]);
+            map.setZoom(15);
+            var marker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat([position.coords.longitude, position.coords.latitude])
+                .addTo(map);
 
-            markers.push(marker);
-        });
-    });
-    var ex = document.createElement('div');
-    ex.className = 'marker-package1';
-    var exampleMarker = new mapboxgl.Marker(ex)
-        .setLngLat([-98.4951,29.4246]);
-    markers.push(exampleMarker);
+            function onDragEnd() {
+                let lngLat = marker.getLngLat();
 
-    map.on('load', function() {
-        markers.forEach(function (marker) {
-            marker.addTo(map);
-        })
-    });
-
-    filterMarker('redCheck','marker-package1');
-
-    function filterMarker(checkType,markerType){
-        document.getElementById(checkType).addEventListener('change', function () {
-            if(this.checked){
-                var array = document.getElementsByClassName(markerType);
-                for(let i = 0; i < array.length; i++){
-                    array[i].classList.add('displayNone');
-                }
+                reverseGeocode({lng: lngLat.lng,lat: lngLat.lat}, mapboxKey).then(function (result) {
+                    document.getElementById('location_deliver').innerText = result;
+                });
             }
-            if(!this.checked){
-                var array = document.getElementsByClassName(markerType);
-                for(let i = 0; i < array.length; i++){
-                    array[i].classList.remove('displayNone');
-                }
-            }
-        })
+
+            marker.on('dragend', onDragEnd);
+
+        }, handle_error,options);
     }
+    else {}
 
+
+    document.getElementById('get_location').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000
+        };
+
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("Longitud: " + position.coords.longitude + " Latitude: " + position.coords.latitude);
+
+                reverseGeocode({lng: position.coords.longitude,lat: position.coords.latitude}, mapboxKey).then(function (result) {
+                    document.getElementById('location_deliver').innerText = result;
+                });
+
+            }, handle_error,options);
+        }
+        else {}
+
+    });
+
+    function handle_error(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                console.log("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                console.log("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log("An unknown error occurred.");
+                break;
+        }
+    }
 
 </script>
 </body>
