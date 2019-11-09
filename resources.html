@@ -23,6 +23,7 @@
     <div class="row p-3">
         <div class="col-7">
             <div id='map'></div>
+
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="redCheck" value="Package1" checked>
                 <label class="form-check-label text-color-white text-crimsonPro" for="redCheck">Show Package 1</label>
@@ -154,8 +155,15 @@
         var address = $(this).text();
         geocode(address,mapboxKey).then(function(coordinates){
             console.log(coordinates[0],coordinates[1]);
-            map.setCenter(coordinates);
             map.setZoom(13);
+            map.flyTo({
+                center: [
+                    coordinates[0].toString(),
+                    coordinates[1].toString()],
+                speed: .7
+            });
+            // map.setCenter(coordinates);
+
         })
     })
 
