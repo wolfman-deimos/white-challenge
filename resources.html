@@ -11,6 +11,15 @@
     <link href="https://fonts.googleapis.com/css?family=Crimson+Pro|Varela&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/whtchl-custcss.css">
     <link rel="stylesheet" href="css/resources">
+    <style>
+        .marker{
+            border-radius: 50%;
+            background-image: url("img/user.svg");
+            width: 25px;
+            height: 25px;
+            background-color: #0052A5;
+        }
+    </style>
 </head>
 <body class="mainblue-bg">
 <div class="jumbotron jumbotron-fluid py-3 texas-banner d-flex justify-content-center">
@@ -76,13 +85,14 @@
     map.addControl(new mapboxgl.NavigationControl());
 
     geocode("San Antonio", mapboxKey).then(function(result) {
-        console.log(result);
+        //console.log(result);
         map.setCenter(result);
         map.setZoom(9);
     });
 
 
     displayFoundations();
+
     filterMarker('redCheck','marker-package1');
     filterMarker('blueCheck','marker-package2');
     filterMarker('greenCheck','marker-package3');
@@ -156,6 +166,28 @@
         })
     })
 
+    let requestURL = "http://localhost:3000/users";
+    let request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    //code to manipulate the JSON FIle as it loads
+    request.onload = function () {
+        let users = request.response;
+
+        users.forEach(function (location) {
+            console.log("Location: ");
+            console.log("Longitud: " + location.last_location.longitud);
+            console.log("Latitude: " + location.last_location.latitud);
+
+            let el = document.createElement('div');
+            el.className = 'marker';
+
+            new mapboxgl.Marker(el)
+                .setLngLat([location.last_location.longitud,location.last_location.latitud])
+                .addTo(map);
+        });
+    }
 
 
 

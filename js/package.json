@@ -4,57 +4,127 @@
       "name": "Soldier's Angels",
       "website": "https://soldiersangels.org",
       "address": "2895 NE Loop 410 Suite 107, San Antonio, TX 78218",
-      "phone": ["210-629-0024"],
+      "phone": [
+        "210-629-0024"
+      ],
       "email": " "
     },
     {
       "name": "National Veterans Outreach (American GI Forum)",
       "website": "https://www.agif-nvop.org/Services/VeteransServiceCenter.aspx",
       "address": "611 N Flores Suite 100, San Antonio, TX 78205",
-      "phone": ["210-354-4892"],
+      "phone": [
+        "210-354-4892"
+      ],
       "email": "giforum@agif-nvop.org"
     },
     {
       "name": "Wounded Warrior",
       "website": "https://www.woundedwarriorproject.org/?utm_expid=.YZjiD6riSxaXpkYaPbpn5A.0&utm_referrer=https%3A%2F%2Fsupport.woundedwarriorproject.org%2Fdefault.aspx%3Ftsid%3D11585%26ovr_acv_id%3D6794%26campaignSource%3DONLINE%26source%3DBS19040%26gclsrc%3Daw.ds%26ds_rl%3D1264110%26gclid%3DEAIaIQobChMI8tTV89uz5QIVD9vACh2A2AAVEAAYASAAEgLJgfD_BwE%26gclsrc%3Daw.ds",
       "address": "12672 Silicon Drive Suite 105, San Antonio, TX 78249",
-      "phone": ["210-561-2656"],
+      "phone": [
+        "210-561-2656"
+      ],
       "email": " "
     },
     {
       "name": "Haven for Hope",
       "website": "https://www.havenforhope.org/GetHelp",
       "address": "1 Haven for Hope Way, San Antonio, TX 78207",
-      "phone": ["210-220-2100"],
+      "phone": [
+        "210-220-2100"
+      ],
       "email": "info@havenforhope.org"
     },
     {
       "name": "SAMMinistries, Inc",
       "website": "https://www.samm.org",
       "address": "1919 NW Loop 410 Suite 100, San Antonio, TX 78213",
-      "phone": ["210-340-0302"],
+      "phone": [
+        "210-340-0302"
+      ],
       "email": "hope@samm.org"
     },
     {
       "name": "San Antonio Catholic Worker",
       "website": "http://www.sa-catholicworker.org/home/",
       "address": "626 Nolan, San Antonio, TX 78202",
-      "phone": ["210-224-7736"],
+      "phone": [
+        "210-224-7736"
+      ],
       "email": " "
     },
     {
       "name": "Housing Authority of Bexar County",
       "website": "https://habctx.org",
       "address": "1954 E Houston St Suite 104, San Antonio, TX 78202",
-      "phone": ["210-225-0071"],
+      "phone": [
+        "210-225-0071"
+      ],
       "email": " "
     },
     {
       "name": "South Texas Veterans Health Care System (STVHCS from VA)",
       "website": "https://www.va.gov/homeless/",
       "address": "7400 Merton Minter, San Antonio, TX 78229",
-      "phone": ["Phone:210-617-5300", "Emergency:877-424-3838"],
+      "phone": [
+        "Phone:210-617-5300",
+        "Emergency:877-424-3838"
+      ],
       "email": "Homelessvets@va.gov"
+    }
+  ],
+  "users": [
+    {
+      "first_name": "George",
+      "last_name": "Smith",
+      "age": "33",
+      "sex": "Male",
+      "military": "Coast Guard",
+      "rank": "",
+      "housing": "Renting",
+      "other": "",
+      "phone": "",
+      "care_package": "Red Package",
+      "last_location": {
+        "longitud": -98.495211876773,
+        "latitud": 29.422951486699745
+      },
+      "id": 1
+    },
+    {
+      "first_name": "Jason",
+      "last_name": "Toe",
+      "age": "55",
+      "sex": "Male",
+      "military": "Coast Guard",
+      "rank": "",
+      "housing": "Renting",
+      "other": "",
+      "phone": "",
+      "care_package": "Red Package",
+      "last_location": {
+        "longitud": -98.49177001147254,
+        "latitud": 29.426601652367864
+      },
+      "id": 2
+    },
+    {
+      "first_name": "Jasmine",
+      "last_name": "Rose",
+      "age": "65",
+      "sex": "Female",
+      "military": "Coast Guard",
+      "rank": "",
+      "housing": "Renting",
+      "other": "",
+      "phone": "",
+      "care_package": "Red Package",
+      "last_location": {
+        "longitud": -98.48285069705469,
+        "latitud": 29.423066215265507
+      },
+      "id": 3
     }
   ]
 }

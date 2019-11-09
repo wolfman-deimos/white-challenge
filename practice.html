@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>White Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .marker-foundation {
+            background-image: url('img/purple-ribbon-edited.png');
+            background-size: cover;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .marker-package1{
+            background-color: #AE4040;
+            background-size: cover;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .displayNone{
+            display: none;
+        }
+
+        .filter-group {
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+            border-radius: 3px;
+            width: 120px;
+            color: #fff;
+        }
+
+        .filter-group input[type=checkbox]:first-child + label {
+            border-radius: 3px 3px 0 0;
+        }
+
+        .filter-group label:last-child {
+            border-radius: 0 0 3px 3px;
+            border: none;
+        }
+
+        .filter-group input[type=checkbox] {
+            display: none;
+        }
+
+        .filter-group input[type=checkbox] + label {
+            background-color: #3386c0;
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        }
+
+        .filter-group input[type=checkbox] + label {
+            background-color: #3386c0;
+            text-transform: capitalize;
+        }
+
+        .filter-group input[type=checkbox] + label:hover,
+        .filter-group input[type=checkbox]:checked + label {
+            background-color: #4ea0da;
+        }
+
+        .filter-group input[type=checkbox]:checked + label:before {
+            content: '✔';
+            margin-right: 5px;
+        }
+
+        .marker{
+            width: 10px;
+            height: 10px;
+            background-color: green;
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="css/whtchl-custcss.css">
+</head>
+
+<body>
+<nav class="navbar navbar-light border-bottom border-dark">
+    <a class="navbar-brand p-0" href="#">
+        <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+    </a>
+</nav>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+<!--        FORM-->
+        <div>
+            <form id="fieldform" class="border border-dark d-inline-block mt-5 mb-1 p-3">
+
+                <!--Content for HOME PANEL -->
+                <div class="form-group">
+                    <input type="text" name="fname" id="fname" placeholder=" First name" required><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="lname" id="lname" placeholder="Last name" required><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="age" id="age" placeholder="Age"><br>
+                </div>
+
+                <div class="form-group">
+                    <select id="sex">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Prefer not to say</option>
+                    </select>
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <select id="military">
+                        <option>Air Force</option>
+                        <option>Army</option>
+                        <option>Coast Guard</option>
+                        <option>Marines</option>
+                        <option>Navy</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="rank" id="rank" placeholder="Rank"><br>
+                </div>
+
+
+                <!--    <div class="form-group">-->
+                <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</button>
+                <br>
+                <select class="mb-2" name="selectList" id="selectresidence">
+                    <option id="renting" >Renting</option>
+                    <option id="owning">Owning</option>
+                    <option id="nocurrent">No current residence</option>
+                    <option id="other">Other</option>
+                </select>
+
+                <label id="otherresidence">
+                    <input type="text" id="other_residence" placeholder="Describe your situation.">
+                </label>
+                <br>
+
+                <div class="form-group">
+                    <input type="text" id="phone" placeholder="Best number to call?">
+                </div>
+
+                <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
+
+                <button class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</button>
+                <br>
+                <div class="form-group">
+                    <select id="care_package">
+                        <option selected>Which package?</option>
+                        <option id="redpkg">Red Package</option>
+                        <option>Package 2</option>
+                        <option>Package 3</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div>
+            <div id='map'></div>
+
+            <input type="checkbox" value="red" id="redCheck">
+        </div>
+
+    </div>
+    <div id="information"></div>
+
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
+</div>
+
+<!--form for aid receiver; desired data: name,age,gender,rank,residential status, phone number/best number, desc, options for packages -->
+<!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
+<!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
+
+
+
+
+
+
+
+
+<footer class="fixed-bottom accent-lblue border-top border-dark">
+    <a class="navbar-brand p-0" href="#">
+        <img src="img/logo-1.svg" height="50" class="p-0" alt="">
+    </a>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<!-- Mapbox Geocoder Util Methods -->
+<script src="js/mapbox-geocoder-utils.js"></script>
+<!--custom js-->
+<script src="js/keys.js"></script>
+<!--<script src="js/foundations.js"></script>-->
+<script src="js/mapbox-functions.js"></script>
+<script src="js/resources.js"></script>
+<!--<script src="js/form.js"></script>-->
+<script>
+    var identification = "";
+
+    mapboxgl.accessToken = mapboxKey;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11'
+    });
+
+    var markers = [];
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    var geolocation = new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+    });
+
+    map.addControl(geolocation);
+
+    geolocation.on('geolocate', function (e) {
+        console.log(e.coords.latitude);
+        console.log(e.coords.longitude);
+
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.id = identification;
+
+        new mapboxgl.Marker(el)
+            .setLngLat([e.coords.longitude,e.coords.latitude ])
+            .addTo(map);
+    });
+
+    geocode("San Antonio", mapboxKey).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(9);
+    });
+
+    // foundations.forEach(function (info) {
+    //     let popupHTML = "<h3 style='text-align: center'><a href='" + info.website + "'>" + info.name + "</a></h3><p>Description Here</p><h4>" + info.email + "</h4><h4>" + info.phone + "</h4>"
+    //     geocode(info.address, mapboxKey).then(function(coordinates) {
+    //         var popup = new mapboxgl.Popup()
+    //             .setHTML(popupHTML);
+    //         var addRibbon = document.createElement('div');
+    //         addRibbon.className = 'marker-foundation';
+    //         var marker = new mapboxgl.Marker(addRibbon)
+    //             .setLngLat(coordinates)
+    //             // .addTo(map)
+    //             .setPopup(popup);
+    //
+    //         markers.push(marker);
+    //     });
+    // });
+    var ex = document.createElement('div');
+    ex.className = 'marker-package1';
+    var exampleMarker = new mapboxgl.Marker(ex)
+        .setLngLat([-98.4951,29.4246]);
+    markers.push(exampleMarker);
+
+    map.on('load', function() {
+        markers.forEach(function (marker) {
+            marker.addTo(map);
+        })
+    });
+
+    filterMarker('redCheck','marker-package1');
+
+    function filterMarker(checkType,markerType){
+        document.getElementById(checkType).addEventListener('change', function () {
+            if(this.checked){
+                var array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.add('displayNone');
+                }
+            }
+            if(!this.checked){
+                var array = document.getElementsByClassName(markerType);
+                for(let i = 0; i < array.length; i++){
+                    array[i].classList.remove('displayNone');
+                }
+            }
+        })
+    }
+
+    $('#fieldform').submit(function (e) {
+        e.preventDefault();
+
+        let fname = $('#fname').val();
+        let lname = $('#lname').val();
+        let age = $('#age').val();
+        let sex = $('#sex').children('option:selected').val();
+        let military = $('#military').children('option:selected').val();
+        let rank = $('#rank').val();
+        let housing = $('#selectresidence').children('option:selected').val();
+        let other = $('#other_residence').val();
+        let phone = $('#phone').val();
+        let package = $('#care_package').children('option:selected').val();
+        let user = {};
+        let options = {
+            enableHighAccuracy: true,
+            timeout: 5000
+        };
+
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("Longitud: " + position.coords.longitude + " Latitude: " + position.coords.latitude);
+
+                    user.first_name = fname;
+                    user.last_name = lname;
+                    user.age = age;
+                    user.sex = sex;
+                    user.military = military;
+                    user.rank = rank;
+                    user.housing = housing;
+                    user.other = other;
+                    user.phone = phone;
+                    user.care_package = package;
+                    user.last_location = {
+                        longitud: position.coords.longitude,
+                        latitud: position.coords.latitude
+                    };
+
+
+            }, function (error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        console.log("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        console.log("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        console.log("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        console.log("An unknown error occurred.");
+                        break;
+                }
+
+            },options);
+        }
+        else {
+            user.first_name = fname;
+            user.last_name = lname;
+            user.age = age;
+            user.sex = sex;
+            user.military = military;
+            user.rank = rank;
+            user.housing = housing;
+            user.other = other;
+            user.phone = phone;
+            user.care_package = package;
+            user.last_location = {
+                longitud: -98.4951,
+                latitud: 29.4246
+            };
+
+        }
+
+        setTimeout(function () {
+            const user_info = {title: 'Users', body: JSON.stringify(user)};
+            const url = 'http://localhost:3000/users';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            };
+            fetch(url, options)
+                .then()
+                .catch();
+
+            $(this).reset();
+        }, 5100);
+
+    });
+    
+
+
+</script>
+</body>
+</html>
+
