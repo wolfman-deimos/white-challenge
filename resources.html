@@ -23,6 +23,7 @@
         .marker-package1, .marker-package2, .marker-package3{
             width: 15px;
             height: 15px;
+            border:1px solid black;
         }
     </style>
 </head>
@@ -188,28 +189,28 @@
         })
     })
 
-    let requestURL = "http://localhost:3000/users";
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    //code to manipulate the JSON FIle as it loads
-    request.onload = function () {
-        let users = request.response;
-
-        users.forEach(function (location) {
-            console.log("User: " + location.first_name);
-            console.log("Longitud: " + location.last_location.longitud);
-            console.log("Latitude: " + location.last_location.latitud);
-
-            let el = document.createElement('div');
-            el.className = 'marker';
-
-            new mapboxgl.Marker(el)
-                .setLngLat([location.last_location.longitud,location.last_location.latitud])
-                .addTo(map);
-        });
-    }
+    // let requestURL = "http://localhost:3000/users";
+    // let request = new XMLHttpRequest();
+    // request.open('GET', requestURL);
+    // request.responseType = 'json';
+    // request.send();
+    // //code to manipulate the JSON FIle as it loads
+    // request.onload = function () {
+    //     let users = request.response;
+    //
+    //     users.forEach(function (location) {
+    //         console.log("User: " + location.first_name);
+    //         console.log("Longitud: " + location.last_location.longitud);
+    //         console.log("Latitude: " + location.last_location.latitud);
+    //
+    //         let el = document.createElement('div');
+    //         el.className = 'marker';
+    //
+    //         new mapboxgl.Marker(el)
+    //             .setLngLat([location.last_location.longitud,location.last_location.latitud])
+    //             .addTo(map);
+    //     });
+    // }
 
     let packagesURL = "http://localhost:3000/packages";
     let requestPackage = new XMLHttpRequest();
