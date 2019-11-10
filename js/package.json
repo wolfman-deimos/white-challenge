@@ -155,9 +155,13 @@
       "package": "red",
       "id": 2
     },
-
     {
-      "place": "212 River Walk, San Antonio, Texas 78205, United States",
+      "place": "Bill Miller Plaza, San Antonio, Texas 78207, United States",
+      "package": "red",
+      "id": 3
+    },
+    {
+      "place": "4518 Pecan Grove Drive, San Antonio, Texas 78222, United States",
       "package": "blue",
       "id": 4
     }
