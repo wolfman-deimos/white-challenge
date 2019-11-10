@@ -169,6 +169,11 @@
       "place": "711 Navarro Street, San Antonio, Texas 78205, United States",
       "package": "white",
       "id": 5
+    },
+    {
+      "place": "Northwest 22nd Street, San Antonio, Texas 78207, United States",
+      "package": "blue",
+      "id": 6
     }
   ]
 }
