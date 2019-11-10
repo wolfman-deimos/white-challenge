@@ -218,6 +218,7 @@
         packages.forEach(function (package) {
             console.log(package.place + " " + package.package);
             geocode(package.place, mapboxKey).then(function (result) {
+
                 let markerPackage = new mapboxgl.Marker({color:package.package})
                     .setLngLat(result)
                     .addTo(map);
