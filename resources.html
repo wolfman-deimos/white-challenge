@@ -19,6 +19,11 @@
             height: 25px;
             background-color: #0052A5;
         }
+
+        .marker-package1, .marker-package2, .marker-package3{
+            width: 15px;
+            height: 15px;
+        }
     </style>
 </head>
 <body class="bg-gradient">
@@ -119,7 +124,7 @@
             let collapse = "collapse" + index;
             let information = "<div class='found_inf'><p class='text-center'>" +  foundation.summary + "</p><h6 class='text-center foundation-address'>" + foundation.address + "</h6><p class='text-center'><a href='" + foundation.website + "' target='_blank'>Website</a></p><p class='text-center'><a href='mailto:" + foundation.email + "'>" + foundation.email + "</a></p><p class='text-center'><a href='" + foundation.phone + "'>" + foundation.phone + "</a></p></div>";
 
-            html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg m-0 p-0'><div class='card-header w-100 h-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100 h-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
+            html += "<div class = 'card border-left-0 border-right-0 border-bottom-0 lblue-bg m-0 p-0'><div class='card-header w-100 p-0' id='" + heading + "'><h2 class = 'mb-0'> <button class = 'btn btn-link text-dark w-100' type = 'button' data-toggle = 'collapse' data-target = '#" + collapse + "' aria-expanded = 'true' aria-controls = '" + collapse + "'>" + foundation.name + "</button></h2></div><div id = '" + collapse + "' class='collapse' aria-labelledby='"+ heading +"' data-parent='#accordionExample'><div class='card-body'>" + information + "</div></div>";
         });
 
         html += "</div>";
@@ -218,7 +223,9 @@
         packages.forEach(function (package) {
             console.log(package.place + " " + package.package);
             geocode(package.place, mapboxKey).then(function (result) {
-                let markerPackage = new mapboxgl.Marker({color:package.package})
+                let el = document.createElement('div');
+                el.className = getPackageType(package);
+                let markerPackage = new mapboxgl.Marker(el)
                     .setLngLat(result)
                     .addTo(map);
             })
@@ -226,6 +233,17 @@
         });
     }
 
+    function getPackageType(package){
+        if(package.package === "white"){
+            return "marker-package2";
+        }else if(package.package === "red"){
+            return "marker-package3";
+        }else if(package.package === "blue"){
+            return "marker-package1";
+        }
+
+
+    }
 
 
 </script>
