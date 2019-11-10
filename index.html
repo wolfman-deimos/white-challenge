@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>White Challenge</title>
+    <title>Care Package</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Mapbox CSS -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
@@ -19,15 +19,6 @@
             height: 200px;
             margin: auto;
         }
-
-        /*.marker-foundation {*/
-        /*    background-image: url('img/purple-ribbon-edited.png');*/
-        /*    background-size: cover;*/
-        /*    width: 50px;*/
-        /*    height: 50px;*/
-        /*    border-radius: 50%;*/
-        /*    cursor: pointer;*/
-        /*}*/
 
         html, body{height:100vh;}
         #outer{
@@ -66,93 +57,22 @@
 
 <body class="bg-gradient">
 
-<div class="container-fluid m-0 p-0 d-md-none">
-    <nav><ul class="d-flex justify-content-around ml-0">
-        <li class="border-radius5"><a class="p-1" href="">Home</a></li>
-        <li class=" border-radius5"><a class="p-1" href="">Volunteer</a></li>
-        <li class=" border-radius5"><a class="p-1" href="resources.html">Resources</a></li>
-    </ul></nav>
-    <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow float-center">Care Package</h1>
+<!--<div class="container-fluid m-0 p-0 d-md-none">-->
+<!--    <nav><ul class="d-flex justify-content-around ml-0">-->
+<!--        <li class="border-radius5"><a class="p-1" href="">Home</a></li>-->
+<!--        <li class=" border-radius5"><a class="p-1" href="">Volunteer</a></li>-->
+<!--        <li class=" border-radius5"><a class="p-1" href="resources.html">Resources</a></li>-->
+<!--    </ul></nav>-->
+<!--    <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow float-center">Care Package</h1>-->
 
-</div>
-
-<div class="container">
-    <div class="d-flex flex-column justify-content-center carddiv d-md-none">
-        <div id="redcard-sm" class="card red-bg" style="width: 20rem;">
-            <div class="w-100 mx-auto">
-                <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
-            </div>
-            <div class="infoparent card-body">
-                <h5 class="card-title">Red Package</h5>
-                <p class="card-text">Focused on providing items tailored for our male populations in need we find.</p>
-            </div>
-            <span id="redinfo-sm" class="info badge badge-pill badge-dark">?</span>
-
-
-        </div>
-
-        <div id="whtcard-sm" class="wht-bg card" style="width: 20rem;">
-            <div class="w-100 mx-auto">
-                <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
-            </div>
-            <div class="infoparent card-body">
-                <h5 class="card-title">White Package</h5>
-                <p class="card-text">Focused on providing a gender-neutral set of items.</p>
-            </div>
-            <span id="whiteinfo-sm" class="info badge badge-pill badge-dark">?</span>
-
-        </div>
-
-
-        <div id="bluecard-sm" class="card mainblue-bg" style="width: 20rem;">
-            <div class="w-100 mx-auto">
-                <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
-            </div>
-            <div class="infoparent card-body text-color-white">
-                <h5 class="card-title">Blue Package</h5>
-                <p class="card-`text`">Focused on providing items tailored for our female populations in need we find.</p>
-            </div>
-            <span id="blueinfo-sm" class="info badge badge-pill badge-dark">?</span>
-        </div>
-    </div>
-</div>
-</div>
-
-
-    <!--    <div class="form-group">-->
-                <label class="mb-2" data-toggle="popover" data-trigger="hover" title="What is your living situation?" data-placement="right" data-content="Renting(a monthly lease/rent payment), owning(mortgaged or otherwise), no current residence(no physical residence), or other(please describe).">Residence</label>
-                 <br>
-                 <select class="mb-2" name="selectList" id="selectresidence">
-                    <option id="renting" >Renting</option>
-                     <option id="owning">Owning</option>
-                    <option id="nocurrent">No current residence</option>
-                    <option id="other">Other</option>
-                </select>
-
-
-
-
-                <!--        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package-->
-
-                <label class="mb-2" data-toggle="popover" data-trigger="hover" title="What package do you need?" data-placement="right" data-content="Choose your package (red, white, or blue)">Package</label>
-                <br>
-                <div class="form-group">
-                    <select id="care_package">
-                        <option value="none" selected>Which package?</option>
-                        <option value="red">Red Package</option>
-                        <option value="white">White Package</option>
-                        <option value="blue">Blue Package</option>
-                    </select>
-                </div>
-
-
+<!--</div>-->
 
 <div class="jumbotron jumbotron-fluid py-3 texas-banner d-none justify-content-center d-md-block">
     <div class="container-fluid m-0">
         <nav><ul class="d-flex position-absolute topright">
-            <li class="ml-1 border-radius5"><a class="p-1" href="">Home</a></li>
-            <li class="ml-1 border-radius5"><a class="p-1" href="">Volunteer</a></li>
-            <li class="ml-1 border-radius5"><a class="p-1" href="resources.html">Resources</a></li>
+            <li class="ml-1 border-radius5"><a class="p-1" href="landing.html">Home</a></li>
+            <li class="ml-1 border-radius5"><a class="p-1" href="#">Carepackage</a></li>
+            <li class="ml-1 border-radius5"><a class="p-1" href="resources.html">Volunteer</a></li>
         </ul></nav>
         <h1 class="display-4 my-0 text-varela text-center text-color-white text-shadow float-center">Care Package</h1>
 
@@ -164,78 +84,6 @@
 <div class="container d-none d-md-block">
 
     <div class="row">
-<!--        <div class="col-4">-->
-<!--        <form id="fieldform" class="border border-dark d-inline-block mb-1 p-3">-->
-
-<!--            &lt;!&ndash;Content for HOME PANEL &ndash;&gt;-->
-<!--                <div class="form-group">-->
-<!--                    <input type="text" name="fname" id="fname" placeholder=" First name" required><br>-->
-<!--                </div>-->
-
-<!--                <div class="form-group">-->
-<!--                    <input type="text" name="lname" id="lname" placeholder="Last name" required><br>-->
-<!--                </div>-->
-
-<!--                <div class="form-group">-->
-<!--                    <input type="text" name="age" id="age" placeholder="Age"><br>-->
-<!--                </div>-->
-
-<!--                <div class="form-group">-->
-<!--                    <select id="sex">-->
-<!--                        <option>Male</option>-->
-<!--                        <option>Female</option>-->
-<!--                        <option>Prefer not to say</option>-->
-<!--                    </select>-->
-<!--                    <br>-->
-<!--                </div>-->
-
-<!--                <div class="form-group">-->
-<!--                    <select id="military">-->
-<!--                        <option>Civilian</option>-->
-<!--                        <option>Air Force</option>-->
-<!--                        <option>Army</option>-->
-<!--                        <option>Coast Guard</option>-->
-<!--                        <option>Marines</option>-->
-<!--                        <option>Navy</option>-->
-<!--                    </select><br>-->
-<!--                </div>-->
-
-<!--                <div class="form-group">-->
-<!--                     <input type="text" name="rank" id="rank" placeholder="Rank"><br>-->
-<!--                </div>-->
-
-
-<!--    &lt;!&ndash;    <div class="form-group">&ndash;&gt;-->
-<!--                 <select class="mb-2" name="selectList" id="selectresidence">-->
-<!--                    <option id="nocurrent">No current residence</option>-->
-<!--                    <option id="renting" >Renting</option>-->
-<!--                     <option id="owning">Owning</option>-->
-<!--                    <option id="other">Other</option>-->
-<!--                </select>-->
-
-<!--                <label id="otherresidence">-->
-<!--                    <input type="text" id="other_residence" placeholder="Describe your situation.">-->
-<!--                </label>-->
-<!--                <br>-->
-
-<!--                <div class="form-group">-->
-<!--                    <input type="text" id="phone" placeholder="Best number to call?">-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash;        todo: Here I want to add some JS to have the chosen option display what the carepackage selected would contain, I think using DOM we should be able to inject a card with the various supplies contained in the care package&ndash;&gt;-->
-
-<!--                <div class="form-group">-->
-<!--                    <select id="care_package">-->
-<!--                        <option value="none" selected>Which package?</option>-->
-<!--                        <option value="red">Red Package</option>-->
-<!--                        <option value="white">White Package</option>-->
-<!--                        <option value="blue">Blue Package</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-
-<!--                <button type="submit">Submit</button>-->
-<!--        </form>-->
-<!--    </div>-->
 
     <div class="col">
         <div class="container">
