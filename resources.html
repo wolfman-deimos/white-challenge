@@ -206,6 +206,26 @@
         });
     }
 
+    let packagesURL = "http://localhost:3000/packages";
+    let requestPackage = new XMLHttpRequest();
+    requestPackage.open('GET', packagesURL);
+    requestPackage.responseType = 'json';
+    requestPackage.send();
+    //code to manipulate the JSON FIle as it loads
+    requestPackage.onload = function () {
+        let packages = requestPackage.response;
+        console.log(packages);
+        packages.forEach(function (package) {
+            console.log(package.place + " " + package.package);
+            geocode(package.place, mapboxKey).then(function (result) {
+                let markerPackage = new mapboxgl.Marker({color:package.package})
+                    .setLngLat(result)
+                    .addTo(map);
+            })
+            
+        });
+    }
+
 
 
 </script>
