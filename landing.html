@@ -2,20 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Carepackage Landing Page</title>
-    <link rel="stylesheet" href="css/whtchl-custcss.css">
+<!--    <link rel="stylesheet" href="css/whtchl-custcss.css">-->
+    <style>
+        body{
+            margin: 0;
+        }
+
+        #landingcontainer{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        #leftcontainer, #rightcontainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100wv;
+            height: 50vh;
+        }
+
+        #leftcontainer{
+            background-image: url("img/volunteer.jpg");
+        }
+
+        #rightcontainer{
+            background-image: url("img/receive.jpg");
+        }
+
+        .text-crimsonPro{
+            text-decoration: none;
+            font-family: 'Crimson Pro', serif;
+            background-color: black;
+            color: white;
+            opacity: .8;
+            padding: 1em;
+        }
+
+        .text-crimsonPro:hover{
+            background-color: white;
+            color: black;
+        }
+
+        /*Small devices (landscape phones, 576px and up)*/
+        @media (min-width: 576px) {
+            #landingcontainer{
+                flex-direction: row;
+            }
+
+            #leftcontainer, #rightcontainer {
+                width: 50vw;
+                height: 100vh;
+            }
+        }
+
+        /*Medium devices (tablets, 768px and up)*/
+        @media (min-width: 768px) { }
+
+        /*Large devices (desktops, 992px and up)*/
+        @media (min-width: 992px) { }
+
+        /*Extra large devices (large desktops, 1200px and up)*/
+        @media (min-width: 1200px) { }
+    </style>
 </head>
 <body id="landingbody">
 
 <div id="landingcontainer">
     <div id="leftcontainer">
-        <img class="landingimg" id="leftpic" src="img/volunteer.jpg">
-        <div id="lefttext" class="text-crimsonPro">Do you want to help?</div>
+<!--        <img class="landingimg" id="leftpic" src="img/volunteer.jpg">-->
+        <a href="resources.html" class="text-crimsonPro">Do you want to help?</a>
     </div>
 
     <div id="rightcontainer">
-        <img class="landingimg" id="rightpic" src="img/receive.jpg">
-        <div id="righttext" class="text-crimsonPro">We're here to help.</div>
+<!--        <img class="landingimg" id="rightpic" src="img/receive.jpg">-->
+        <a href="index.html" class="text-crimsonPro">We're here to help.</a>
     </div>
 
 </div>

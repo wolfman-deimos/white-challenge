@@ -7,50 +7,27 @@
     <title>White Challenge</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Mapbox CSS -->
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
     <link href="https://fonts.googleapis.com/css?family=Crimson+Pro|Varela&display=swap" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
-        #map{
-            width: 600px;
-            height: 400px;
+        #map {
+            /* the width and height may be set to any size */
+            width: 200px;
+            height: 200px;
+            margin: auto;
         }
 
-        /*Small devices (landscape phones, 576px and up)*/
-        @media (min-width: 576px) {
-            #map{
-                width: 80%;
-            }
-        }
-
-        /*Medium devices (tablets, 768px and up)*/
-        @media (min-width: 768px) {
-            #map{
-                width: 60%;
-            }
-        }
-
-        /*Large devices (desktops, 992px and up)*/
-        @media (min-width: 992px) {
-
-        }
-
-        /*Extra large devices (large desktops, 1200px and up)*/
-        @media (min-width: 1200px) {
-            #map{
-                width: 80%;
-            }
-        }
-
-        .marker-foundation {
-            background-image: url('img/purple-ribbon-edited.png');
-            background-size: cover;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+        /*.marker-foundation {*/
+        /*    background-image: url('img/purple-ribbon-edited.png');*/
+        /*    background-size: cover;*/
+        /*    width: 50px;*/
+        /*    height: 50px;*/
+        /*    border-radius: 50%;*/
+        /*    cursor: pointer;*/
+        /*}*/
 
         html, body{height:100vh;}
         #outer{
@@ -58,6 +35,29 @@
         }
 
         * html #outer{height:100vh;}
+
+        .modal-body{
+            width: 90vw;
+            height: 90vh;
+            background-color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -45vh; /* Negative half of height. */
+            margin-left: -45vw; /* Negative half of width. */
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .items{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .show{
+            display: none;
+        }
     </style>
 
     <link rel="stylesheet" href="css/whtchl-custcss.css">
@@ -162,6 +162,7 @@
 <!-- todo : bootstrap validation x-ref: https://getbootstrap.com/docs/4.0/components/forms/#server-side-->
 <!-- todo : bootstrap popovers w/ more info for aspects of form, x-ref: https://getbootstrap.com/docs/4.0/components/popovers/-->
 <div class="container d-none d-md-block">
+
     <div class="row">
 <!--        <div class="col-4">-->
 <!--        <form id="fieldform" class="border border-dark d-inline-block mb-1 p-3">-->
@@ -238,8 +239,10 @@
 
     <div class="col">
         <div class="container">
+
             <div class="d-flex flex-row carddiv">
-                    <div id="redcard" class="card red-bg" style="width: 20rem;">
+<!--                RED CARD-->
+                    <div id="red" class="card red-bg" data-toggle="modal" data-target="#exampleModalScrollable" style="width: 20rem;">
                         <div class="w-100 mx-auto">
                             <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
                         </div>
@@ -252,7 +255,8 @@
 
                     </div>
 
-                    <div id="whtcard" class="wht-bg card" style="width: 20rem;">
+<!--                WHITE CARD-->
+                    <div id="white" class="wht-bg card" data-toggle="modal" data-target="#exampleModalScrollable" style="width: 20rem;">
                         <div class="w-100 mx-auto">
                             <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
                         </div>
@@ -264,8 +268,8 @@
 
                     </div>
 
-
-                    <div id="bluecard" class="card mainblue-bg" style="width: 20rem;">
+<!--                    BLUE CARD-->
+                    <div id="blue" class="card mainblue-bg" data-toggle="modal" data-target="#exampleModalScrollable" style="width: 20rem;">
                         <div class="w-100 mx-auto">
                             <img class="card-img-top" src="img/pkgfiller.jpeg" alt="Card image cap">
                         </div>
@@ -277,9 +281,37 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
 </div>
+
+
+<div class="modal-body show">
+    <div class="items">
+        <div>
+            <label for="location_deliver">Where Package would be deliver?</label>
+            <p id="location_deliver"></p>
+        </div>
+
+        <button id="get_location">Get my current location</button>
+
+        <div>
+            <label for="package_selected">Package Selected</label>
+            <p id="package_selected"></p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div>
+        <button id="back">Back</button>
+        <button>Submit</button>
+    </div>
+
+</div>
+
 
 
 
@@ -295,8 +327,90 @@
 <!--    <script src="js/foundations.js"></script>-->
 <!--    <script src="js/mapbox-functions.js"></script>-->
 <!--    <script src="js/resources.js"></script>-->
+    <script src="js/keys.js"></script>
     <script src="js/customjs.js"></script>
     <script src="js/form.js"></script>
+    <script>
+        var packageSelected = '';
+        $('.card').click(function () {
+            let selected = $(this).attr('id');
+
+            $('#package_selected').text(selected + " package");
+
+            $('.modal-body').removeClass('show');
+
+        });
+
+        $('#back').click(function () {
+            $('.modal-body').addClass('show');
+        });
+
+        mapboxgl.accessToken = mapboxKey;
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11'
+        });
+
+        map.setCenter([-98.49350734506206, 29.426848259723315]);
+        map.setZoom(15);
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([-98.49350734506206, 29.426848259723315])
+            .addTo(map);
+
+        function onDragEnd() {
+            let lngLat = marker.getLngLat();
+
+            reverseGeocode({lng: lngLat.lng,lat: lngLat.lat}, mapboxKey).then(function (result) {
+                document.getElementById('location_deliver').innerText = result;
+            });
+        }
+
+        marker.on('dragend', onDragEnd);
+
+        document.getElementById('get_location').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            let options = {
+                enableHighAccuracy: true,
+                timeout: 5000
+            };
+
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log("Longitud: " + position.coords.longitude + " Latitude: " + position.coords.latitude);
+
+                    reverseGeocode({lng: position.coords.longitude,lat: position.coords.latitude}, mapboxKey).then(function (result) {
+                        document.getElementById('location_deliver').innerText = result;
+                    });
+
+                }, handle_error,options);
+            }
+            else {}
+
+        });
+
+        function handle_error(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    console.log("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log("An unknown error occurred.");
+                    break;
+            }
+        }
+
+    </script>
 
 </body>
 </main>
