@@ -307,7 +307,7 @@
 
     <div>
         <button id="back">Back</button>
-        <button>Submit</button>
+        <button id="submit">Submit</button>
     </div>
 
 </div>
@@ -332,10 +332,11 @@
     <script src="js/form.js"></script>
     <script>
         var packageSelected = '';
-        $('.card').click(function () {
-            let selected = $(this).attr('id');
 
-            $('#package_selected').text(selected + " package");
+        $('.card').click(function () {
+            packageSelected = $(this).attr('id');
+
+            $('#package_selected').text(packageSelected + " package");
 
             $('.modal-body').removeClass('show');
 
@@ -344,6 +345,36 @@
         $('#back').click(function () {
             $('.modal-body').addClass('show');
         });
+
+        $('#submit').click(function (e) {
+            e.preventDefault();
+
+            let address = $('#location_deliver').text();
+
+            let package ={
+                place: address,
+                package: packageSelected
+            }
+
+            if(address !== ""){
+                let user_info = {title: 'Users', body: JSON.stringify(package)};
+                let url = 'http://localhost:3000/packages';
+                let options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(package),
+                };
+                fetch(url, options)
+                    .then()
+                    .catch();
+
+                $('.modal-body').addClass('show');
+            }
+
+        });
+
 
         mapboxgl.accessToken = mapboxKey;
 

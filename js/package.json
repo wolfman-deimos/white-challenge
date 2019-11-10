@@ -143,5 +143,23 @@
       },
       "id": 4
     }
+  ],
+  "packages": [
+    {
+      "place": "13330 Blanco Road, San Antonio, Texas 78216, United States",
+      "package": "white",
+      "id": 1
+    },
+    {
+      "place": "500 North Santa Rosa Street, San Antonio, Texas 78207, United States",
+      "package": "red",
+      "id": 2
+    },
+
+    {
+      "place": "212 River Walk, San Antonio, Texas 78205, United States",
+      "package": "blue",
+      "id": 4
+    }
   ]
 }
