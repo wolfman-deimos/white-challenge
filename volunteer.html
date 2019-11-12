@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro|Varela&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/whtchl-custcss.css">
+    <link rel="stylesheet" href="css/resources">
+</head>
+<body>
+<main class="bg-gradient">
+    <div class="row">
+        <div class="col-6">
+    <div id='map' class = "mx-auto" style="width: 500px; height: 400px"></div></div>
+    <div class="col-6">
+
+        <div class="row m-0 justify-content-center">
+            <div class="">
+                <form id="fieldform" class="border border-dark d-inline-block mt-2 mb-1 p-3">
+                    <!--Content for HOME PANEL -->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <div>First Name</div>
+                                <input type="text" name="fname" id="fname"  required><br>
+                            </div>
+                            <div class="form-group">
+                                <div>Last Name</div>
+                                <input type="text" name="lname" id="lname" required><br>
+                            </div>
+                            <div class="form-group">
+                                <div>Age:</div>
+                                <input type="text" name="age" id="age"><br>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox"> Female<br>
+                                <input type="checkbox"> Male<br>
+                                <input type="checkbox"> Prefer not to say<br>
+                                <br>
+                            </div>
+                            <div class="text-center">Military:</div>
+                            <input type="checkbox"> Civilian<br>
+                            <input type="checkbox"> Army<br>
+                            <input type="checkbox"> Navy<br>
+                            <input type="checkbox"> Marines<br>
+                            <input type="checkbox"> Coastguard<br>
+                            <input type="checkbox"> National Guard<br><br>
+                        </div><div class="col-6">
+                        <div class="form-group">
+                            <div class="text-center">(Optional)</div>
+                            <div >Military Info</div>
+                            <input type="text" class="w-100">
+                        </div>
+                        <!--    <div class="form-group">-->
+                        <div>Residential Status:</div>
+                        <input type="text" class="w-100">
+                        <br>
+                        <div class="text-center">(Optional)</div>
+                        <div>Details on Residential Status:</div>
+                        <input type="text" class="w-100">
+                        <br>
+                        <div class="form-group">
+                            <div>Phone:</div>
+                            <input type="text" class="w-100">
+                        </div>
+                        <div>Other Information:</div>
+                        <input type="text" class = "w-100" style="height: 12em">
+                    </div>
+                    </div>
+            </div>
+    </div>
+<!--            <div class="text-center mt-4">Central Parking, 200 North Main St, San Antonio, Texas 78205, United States-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<!-- Mapbox Geocoder Util Methods -->
+<script src="js/mapbox-geocoder-utils.js"></script>
+<!-- Custom JS -->
+<script src="js/foundations.js"></script>
+<script src="js/encampments.js"></script>
+<script src="js/keys.js"></script>
+<script src="js/mapbox-functions.js"></script>
+<script>
+    mapboxgl.accessToken = mapboxKey;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+    });
+
+
+    geocode("Central Parking, 200 North Main St, San Antonio, Texas 78205, United States\n" +
+        "\n", mapboxKey).then(function(result) {
+        //console.log(result);
+        map.setCenter(result);
+        map.setZoom(15);
+        var marker = new mapboxgl.Marker()
+            .setLngLat(result)
+            .addTo(map)
+    });
+</script>
+</body>
+</html>
